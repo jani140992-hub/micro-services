@@ -85,3 +85,7 @@ postgres_data/
 kafka_data/
 zookeeper_data/
 redis_data/
+
+# Kubernetes Secrets
+*secrets.yaml
+secrets.yaml
