@@ -8,7 +8,7 @@ version = "1.0.0"
 description = "Enterprise Distributed Microservices Platform"
 readme = "README.md"
 requires-python = ">=3.12"
-license = {text = "MIT"}
+license = {text = "Proprietary"}
 authors = [
     {name = "jani140992-hub", email = "jani140992-hub@users.noreply.github.com"}
 ]
