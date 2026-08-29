@@ -1,0 +1,1 @@
+"""Shipping & Logistics Service - config."""
