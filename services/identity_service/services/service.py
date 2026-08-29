@@ -2,12 +2,12 @@
 
 import logging
 from typing import Any, Dict, List, Optional
-from domain.models import UserCredentialAggregate, UserSession, RoleAssignment
-from domain.exceptions import (
+from services.identity_service.domain.models import UserCredentialAggregate, UserSession, RoleAssignment
+from services.identity_service.domain.exceptions import (
     UserCredentialNotFoundException,
     UserCredentialAlreadyExistsException
 )
-from dto.requests import (
+from services.identity_service.dto.requests import (
     CreateUserCredentialRequest,
     UpdateUserCredentialRequest,
     ChangeUserCredentialStatusRequest,
@@ -16,7 +16,7 @@ from dto.requests import (
     QueryUserCredentialRequest,
     BatchUserCredentialActionRequest
 )
-from dto.responses import (
+from services.identity_service.dto.responses import (
     UserCredentialSummaryResponse,
     UserCredentialDetailResponse,
     UserCredentialPageResponse,
@@ -25,9 +25,9 @@ from dto.responses import (
     RoleAssignmentResponse,
     StatusHistoryResponse
 )
-from repositories.repository import UserCredentialRepository
-from services.cache_service import UserCredentialCacheService
-from events.producers import UserCredentialEventProducer
+from services.identity_service.repositories.repository import UserCredentialRepository
+from services.identity_service.services.cache_service import UserCredentialCacheService
+from services.identity_service.events.producers import UserCredentialEventProducer
 from shared.utils.pagination import PageMetadata
 
 logger = logging.getLogger("identity_service.service")

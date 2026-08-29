@@ -3,7 +3,7 @@
 import json
 import logging
 from typing import Any, Dict, Optional
-from domain.models import GatewayRouteAggregate
+from services.api_gateway.domain.models import GatewayRouteAggregate
 
 logger = logging.getLogger("api_gateway.cache")
 

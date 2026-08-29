@@ -4,8 +4,8 @@ import uuid
 import random
 import string
 from typing import Any, Dict, List
-from domain.models import StockItemAggregate, WarehouseLocation, StockReservation
-from dto.requests import CreateStockItemRequest, AddWarehouseLocationRequest, AddStockReservationRequest
+from services.inventory_service.domain.models import StockItemAggregate, WarehouseLocation, StockReservation
+from services.inventory_service.dto.requests import CreateStockItemRequest, AddWarehouseLocationRequest, AddStockReservationRequest
 
 class StockItemFixtureFactory:
     """Generates deterministic mock domain objects and DTOs for testing."""

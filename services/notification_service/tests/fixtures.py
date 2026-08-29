@@ -4,8 +4,8 @@ import uuid
 import random
 import string
 from typing import Any, Dict, List
-from domain.models import NotificationMessageAggregate, DeliveryAttemptRecord, TemplateVariable
-from dto.requests import CreateNotificationMessageRequest, AddDeliveryAttemptRecordRequest, AddTemplateVariableRequest
+from services.notification_service.domain.models import NotificationMessageAggregate, DeliveryAttemptRecord, TemplateVariable
+from services.notification_service.dto.requests import CreateNotificationMessageRequest, AddDeliveryAttemptRecordRequest, AddTemplateVariableRequest
 
 class NotificationMessageFixtureFactory:
     """Generates deterministic mock domain objects and DTOs for testing."""

@@ -1,8 +1,8 @@
 """Domain Unit Tests for Shipping & Logistics Service."""
 
 import pytest
-from domain.models import ShipmentConsignmentAggregate, TrackingCheckpoint, ShippingManifest
-from domain.exceptions import (
+from services.shipping_service.domain.models import ShipmentConsignmentAggregate, TrackingCheckpoint, ShippingManifest
+from services.shipping_service.domain.exceptions import (
     InvalidShipmentConsignmentStateTransitionException,
     ShipmentConsignmentValidationException,
     ShipmentConsignmentQuotaExceededException

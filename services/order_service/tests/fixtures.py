@@ -4,8 +4,8 @@ import uuid
 import random
 import string
 from typing import Any, Dict, List
-from domain.models import CustomerOrderAggregate, OrderLineItem, OrderStatusRecord
-from dto.requests import CreateCustomerOrderRequest, AddOrderLineItemRequest, AddOrderStatusRecordRequest
+from services.order_service.domain.models import CustomerOrderAggregate, OrderLineItem, OrderStatusRecord
+from services.order_service.dto.requests import CreateCustomerOrderRequest, AddOrderLineItemRequest, AddOrderStatusRecordRequest
 
 class CustomerOrderFixtureFactory:
     """Generates deterministic mock domain objects and DTOs for testing."""

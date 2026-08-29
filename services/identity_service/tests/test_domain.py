@@ -1,8 +1,8 @@
 """Domain Unit Tests for Identity & Authentication Service."""
 
 import pytest
-from domain.models import UserCredentialAggregate, UserSession, RoleAssignment
-from domain.exceptions import (
+from services.identity_service.domain.models import UserCredentialAggregate, UserSession, RoleAssignment
+from services.identity_service.domain.exceptions import (
     InvalidUserCredentialStateTransitionException,
     UserCredentialValidationException,
     UserCredentialQuotaExceededException

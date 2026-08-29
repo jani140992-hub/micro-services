@@ -1,8 +1,8 @@
 """Repository Unit Tests for Notification & Messaging Service."""
 
 import pytest
-from domain.models import NotificationMessageAggregate
-from repositories.repository import NotificationMessageRepository
+from services.notification_service.domain.models import NotificationMessageAggregate
+from services.notification_service.repositories.repository import NotificationMessageRepository
 
 @pytest.mark.asyncio
 async def test_notification_service_repo_crud_operations():

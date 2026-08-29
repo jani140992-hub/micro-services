@@ -2,12 +2,12 @@
 
 import logging
 from typing import Any, Dict, List, Optional
-from domain.models import ShipmentConsignmentAggregate, TrackingCheckpoint, ShippingManifest
-from domain.exceptions import (
+from services.shipping_service.domain.models import ShipmentConsignmentAggregate, TrackingCheckpoint, ShippingManifest
+from services.shipping_service.domain.exceptions import (
     ShipmentConsignmentNotFoundException,
     ShipmentConsignmentAlreadyExistsException
 )
-from dto.requests import (
+from services.shipping_service.dto.requests import (
     CreateShipmentConsignmentRequest,
     UpdateShipmentConsignmentRequest,
     ChangeShipmentConsignmentStatusRequest,
@@ -16,7 +16,7 @@ from dto.requests import (
     QueryShipmentConsignmentRequest,
     BatchShipmentConsignmentActionRequest
 )
-from dto.responses import (
+from services.shipping_service.dto.responses import (
     ShipmentConsignmentSummaryResponse,
     ShipmentConsignmentDetailResponse,
     ShipmentConsignmentPageResponse,
@@ -25,9 +25,9 @@ from dto.responses import (
     ShippingManifestResponse,
     StatusHistoryResponse
 )
-from repositories.repository import ShipmentConsignmentRepository
-from services.cache_service import ShipmentConsignmentCacheService
-from events.producers import ShipmentConsignmentEventProducer
+from services.shipping_service.repositories.repository import ShipmentConsignmentRepository
+from services.shipping_service.services.cache_service import ShipmentConsignmentCacheService
+from services.shipping_service.events.producers import ShipmentConsignmentEventProducer
 from shared.utils.pagination import PageMetadata
 
 logger = logging.getLogger("shipping_service.service")

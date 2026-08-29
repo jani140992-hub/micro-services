@@ -2,12 +2,12 @@
 
 import logging
 from typing import Any, Dict, List, Optional
-from domain.models import UserProfileAggregate, CustomerAddress, UserPreference
-from domain.exceptions import (
+from services.user_service.domain.models import UserProfileAggregate, CustomerAddress, UserPreference
+from services.user_service.domain.exceptions import (
     UserProfileNotFoundException,
     UserProfileAlreadyExistsException
 )
-from dto.requests import (
+from services.user_service.dto.requests import (
     CreateUserProfileRequest,
     UpdateUserProfileRequest,
     ChangeUserProfileStatusRequest,
@@ -16,7 +16,7 @@ from dto.requests import (
     QueryUserProfileRequest,
     BatchUserProfileActionRequest
 )
-from dto.responses import (
+from services.user_service.dto.responses import (
     UserProfileSummaryResponse,
     UserProfileDetailResponse,
     UserProfilePageResponse,
@@ -25,9 +25,9 @@ from dto.responses import (
     UserPreferenceResponse,
     StatusHistoryResponse
 )
-from repositories.repository import UserProfileRepository
-from services.cache_service import UserProfileCacheService
-from events.producers import UserProfileEventProducer
+from services.user_service.repositories.repository import UserProfileRepository
+from services.user_service.services.cache_service import UserProfileCacheService
+from services.user_service.events.producers import UserProfileEventProducer
 from shared.utils.pagination import PageMetadata
 
 logger = logging.getLogger("user_service.service")

@@ -1,8 +1,8 @@
 """Async Repository Implementation for Payment & Billing Service."""
 
 from typing import Dict, List, Optional, Tuple
-from domain.models import PaymentTransactionAggregate, LedgerEntry, RefundItem
-from domain.exceptions import PaymentTransactionNotFoundException
+from services.payment_service.domain.models import PaymentTransactionAggregate, LedgerEntry, RefundItem
+from services.payment_service.domain.exceptions import PaymentTransactionNotFoundException
 
 class PaymentTransactionRepository:
     """Async data access repository supporting filtering, pagination, and transactional saves."""

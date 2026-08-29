@@ -1,8 +1,8 @@
 """Domain Unit Tests for API Gateway Service."""
 
 import pytest
-from domain.models import GatewayRouteAggregate, RoutePredicate, RouteFilter
-from domain.exceptions import (
+from services.api_gateway.domain.models import GatewayRouteAggregate, RoutePredicate, RouteFilter
+from services.api_gateway.domain.exceptions import (
     InvalidGatewayRouteStateTransitionException,
     GatewayRouteValidationException,
     GatewayRouteQuotaExceededException

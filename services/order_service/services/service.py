@@ -2,12 +2,12 @@
 
 import logging
 from typing import Any, Dict, List, Optional
-from domain.models import CustomerOrderAggregate, OrderLineItem, OrderStatusRecord
-from domain.exceptions import (
+from services.order_service.domain.models import CustomerOrderAggregate, OrderLineItem, OrderStatusRecord
+from services.order_service.domain.exceptions import (
     CustomerOrderNotFoundException,
     CustomerOrderAlreadyExistsException
 )
-from dto.requests import (
+from services.order_service.dto.requests import (
     CreateCustomerOrderRequest,
     UpdateCustomerOrderRequest,
     ChangeCustomerOrderStatusRequest,
@@ -16,7 +16,7 @@ from dto.requests import (
     QueryCustomerOrderRequest,
     BatchCustomerOrderActionRequest
 )
-from dto.responses import (
+from services.order_service.dto.responses import (
     CustomerOrderSummaryResponse,
     CustomerOrderDetailResponse,
     CustomerOrderPageResponse,
@@ -25,9 +25,9 @@ from dto.responses import (
     OrderStatusRecordResponse,
     StatusHistoryResponse
 )
-from repositories.repository import CustomerOrderRepository
-from services.cache_service import CustomerOrderCacheService
-from events.producers import CustomerOrderEventProducer
+from services.order_service.repositories.repository import CustomerOrderRepository
+from services.order_service.services.cache_service import CustomerOrderCacheService
+from services.order_service.events.producers import CustomerOrderEventProducer
 from shared.utils.pagination import PageMetadata
 
 logger = logging.getLogger("order_service.service")

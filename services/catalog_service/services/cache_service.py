@@ -3,7 +3,7 @@
 import json
 import logging
 from typing import Any, Dict, Optional
-from domain.models import ProductItemAggregate
+from services.catalog_service.domain.models import ProductItemAggregate
 
 logger = logging.getLogger("catalog_service.cache")
 

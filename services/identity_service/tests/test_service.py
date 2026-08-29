@@ -1,11 +1,11 @@
 """Application Service Unit Tests for Identity & Authentication Service."""
 
 import pytest
-from services.service import UserCredentialService
-from repositories.repository import UserCredentialRepository
-from services.cache_service import UserCredentialCacheService
-from events.producers import UserCredentialEventProducer
-from dto.requests import (
+from services.identity_service.services.service import UserCredentialService
+from services.identity_service.repositories.repository import UserCredentialRepository
+from services.identity_service.services.cache_service import UserCredentialCacheService
+from services.identity_service.events.producers import UserCredentialEventProducer
+from services.identity_service.dto.requests import (
     CreateUserCredentialRequest,
     UpdateUserCredentialRequest,
     ChangeUserCredentialStatusRequest,
@@ -14,7 +14,7 @@ from dto.requests import (
     QueryUserCredentialRequest,
     BatchUserCredentialActionRequest
 )
-from domain.exceptions import UserCredentialNotFoundException, UserCredentialAlreadyExistsException
+from services.identity_service.domain.exceptions import UserCredentialNotFoundException, UserCredentialAlreadyExistsException
 
 @pytest.fixture
 def service():

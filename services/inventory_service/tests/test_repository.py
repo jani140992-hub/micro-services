@@ -1,8 +1,8 @@
 """Repository Unit Tests for Inventory Management Service."""
 
 import pytest
-from domain.models import StockItemAggregate
-from repositories.repository import StockItemRepository
+from services.inventory_service.domain.models import StockItemAggregate
+from services.inventory_service.repositories.repository import StockItemRepository
 
 @pytest.mark.asyncio
 async def test_inventory_service_repo_crud_operations():

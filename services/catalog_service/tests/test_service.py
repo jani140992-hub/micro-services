@@ -1,11 +1,11 @@
 """Application Service Unit Tests for Product Catalog Service."""
 
 import pytest
-from services.service import ProductItemService
-from repositories.repository import ProductItemRepository
-from services.cache_service import ProductItemCacheService
-from events.producers import ProductItemEventProducer
-from dto.requests import (
+from services.catalog_service.services.service import ProductItemService
+from services.catalog_service.repositories.repository import ProductItemRepository
+from services.catalog_service.services.cache_service import ProductItemCacheService
+from services.catalog_service.events.producers import ProductItemEventProducer
+from services.catalog_service.dto.requests import (
     CreateProductItemRequest,
     UpdateProductItemRequest,
     ChangeProductItemStatusRequest,
@@ -14,7 +14,7 @@ from dto.requests import (
     QueryProductItemRequest,
     BatchProductItemActionRequest
 )
-from domain.exceptions import ProductItemNotFoundException, ProductItemAlreadyExistsException
+from services.catalog_service.domain.exceptions import ProductItemNotFoundException, ProductItemAlreadyExistsException
 
 @pytest.fixture
 def service():

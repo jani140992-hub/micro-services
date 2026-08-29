@@ -1,11 +1,11 @@
 """Application Service Unit Tests for Shipping & Logistics Service."""
 
 import pytest
-from services.service import ShipmentConsignmentService
-from repositories.repository import ShipmentConsignmentRepository
-from services.cache_service import ShipmentConsignmentCacheService
-from events.producers import ShipmentConsignmentEventProducer
-from dto.requests import (
+from services.shipping_service.services.service import ShipmentConsignmentService
+from services.shipping_service.repositories.repository import ShipmentConsignmentRepository
+from services.shipping_service.services.cache_service import ShipmentConsignmentCacheService
+from services.shipping_service.events.producers import ShipmentConsignmentEventProducer
+from services.shipping_service.dto.requests import (
     CreateShipmentConsignmentRequest,
     UpdateShipmentConsignmentRequest,
     ChangeShipmentConsignmentStatusRequest,
@@ -14,7 +14,7 @@ from dto.requests import (
     QueryShipmentConsignmentRequest,
     BatchShipmentConsignmentActionRequest
 )
-from domain.exceptions import ShipmentConsignmentNotFoundException, ShipmentConsignmentAlreadyExistsException
+from services.shipping_service.domain.exceptions import ShipmentConsignmentNotFoundException, ShipmentConsignmentAlreadyExistsException
 
 @pytest.fixture
 def service():

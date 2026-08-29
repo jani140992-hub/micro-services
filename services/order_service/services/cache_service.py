@@ -3,7 +3,7 @@
 import json
 import logging
 from typing import Any, Dict, Optional
-from domain.models import CustomerOrderAggregate
+from services.order_service.domain.models import CustomerOrderAggregate
 
 logger = logging.getLogger("order_service.cache")
 

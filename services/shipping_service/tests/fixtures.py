@@ -4,8 +4,8 @@ import uuid
 import random
 import string
 from typing import Any, Dict, List
-from domain.models import ShipmentConsignmentAggregate, TrackingCheckpoint, ShippingManifest
-from dto.requests import CreateShipmentConsignmentRequest, AddTrackingCheckpointRequest, AddShippingManifestRequest
+from services.shipping_service.domain.models import ShipmentConsignmentAggregate, TrackingCheckpoint, ShippingManifest
+from services.shipping_service.dto.requests import CreateShipmentConsignmentRequest, AddTrackingCheckpointRequest, AddShippingManifestRequest
 
 class ShipmentConsignmentFixtureFactory:
     """Generates deterministic mock domain objects and DTOs for testing."""

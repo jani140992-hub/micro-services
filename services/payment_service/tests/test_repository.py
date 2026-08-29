@@ -1,8 +1,8 @@
 """Repository Unit Tests for Payment & Billing Service."""
 
 import pytest
-from domain.models import PaymentTransactionAggregate
-from repositories.repository import PaymentTransactionRepository
+from services.payment_service.domain.models import PaymentTransactionAggregate
+from services.payment_service.repositories.repository import PaymentTransactionRepository
 
 @pytest.mark.asyncio
 async def test_payment_service_repo_crud_operations():

@@ -3,7 +3,7 @@
 import json
 import logging
 from typing import Any, Dict, Optional
-from domain.models import NotificationMessageAggregate
+from services.notification_service.domain.models import NotificationMessageAggregate
 
 logger = logging.getLogger("notification_service.cache")
 

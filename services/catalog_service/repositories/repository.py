@@ -1,8 +1,8 @@
 """Async Repository Implementation for Product Catalog Service."""
 
 from typing import Dict, List, Optional, Tuple
-from domain.models import ProductItemAggregate, ProductVariant, ProductAttribute
-from domain.exceptions import ProductItemNotFoundException
+from services.catalog_service.domain.models import ProductItemAggregate, ProductVariant, ProductAttribute
+from services.catalog_service.domain.exceptions import ProductItemNotFoundException
 
 class ProductItemRepository:
     """Async data access repository supporting filtering, pagination, and transactional saves."""

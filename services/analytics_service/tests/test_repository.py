@@ -1,8 +1,8 @@
 """Repository Unit Tests for Analytics & BI Service."""
 
 import pytest
-from domain.models import StreamMetricRecordAggregate
-from repositories.repository import StreamMetricRecordRepository
+from services.analytics_service.domain.models import StreamMetricRecordAggregate
+from services.analytics_service.repositories.repository import StreamMetricRecordRepository
 
 @pytest.mark.asyncio
 async def test_analytics_service_repo_crud_operations():

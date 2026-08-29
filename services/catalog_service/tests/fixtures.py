@@ -4,8 +4,8 @@ import uuid
 import random
 import string
 from typing import Any, Dict, List
-from domain.models import ProductItemAggregate, ProductVariant, ProductAttribute
-from dto.requests import CreateProductItemRequest, AddProductVariantRequest, AddProductAttributeRequest
+from services.catalog_service.domain.models import ProductItemAggregate, ProductVariant, ProductAttribute
+from services.catalog_service.dto.requests import CreateProductItemRequest, AddProductVariantRequest, AddProductAttributeRequest
 
 class ProductItemFixtureFactory:
     """Generates deterministic mock domain objects and DTOs for testing."""

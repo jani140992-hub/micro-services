@@ -4,8 +4,8 @@ import uvicorn
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from controllers.routes import router
-from config.settings import settings
+from services.payment_service.controllers.routes import router
+from services.payment_service.config.settings import settings
 from shared.tracing.middleware import CorrelationIdMiddleware, TracingMiddleware
 from shared.exceptions.handlers import setup_exception_handlers
 

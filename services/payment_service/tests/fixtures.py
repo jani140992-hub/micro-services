@@ -4,8 +4,8 @@ import uuid
 import random
 import string
 from typing import Any, Dict, List
-from domain.models import PaymentTransactionAggregate, LedgerEntry, RefundItem
-from dto.requests import CreatePaymentTransactionRequest, AddLedgerEntryRequest, AddRefundItemRequest
+from services.payment_service.domain.models import PaymentTransactionAggregate, LedgerEntry, RefundItem
+from services.payment_service.dto.requests import CreatePaymentTransactionRequest, AddLedgerEntryRequest, AddRefundItemRequest
 
 class PaymentTransactionFixtureFactory:
     """Generates deterministic mock domain objects and DTOs for testing."""

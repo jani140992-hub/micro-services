@@ -1,8 +1,8 @@
 """Domain Unit Tests for Payment & Billing Service."""
 
 import pytest
-from domain.models import PaymentTransactionAggregate, LedgerEntry, RefundItem
-from domain.exceptions import (
+from services.payment_service.domain.models import PaymentTransactionAggregate, LedgerEntry, RefundItem
+from services.payment_service.domain.exceptions import (
     InvalidPaymentTransactionStateTransitionException,
     PaymentTransactionValidationException,
     PaymentTransactionQuotaExceededException

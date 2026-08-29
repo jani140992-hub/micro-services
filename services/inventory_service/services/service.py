@@ -2,12 +2,12 @@
 
 import logging
 from typing import Any, Dict, List, Optional
-from domain.models import StockItemAggregate, WarehouseLocation, StockReservation
-from domain.exceptions import (
+from services.inventory_service.domain.models import StockItemAggregate, WarehouseLocation, StockReservation
+from services.inventory_service.domain.exceptions import (
     StockItemNotFoundException,
     StockItemAlreadyExistsException
 )
-from dto.requests import (
+from services.inventory_service.dto.requests import (
     CreateStockItemRequest,
     UpdateStockItemRequest,
     ChangeStockItemStatusRequest,
@@ -16,7 +16,7 @@ from dto.requests import (
     QueryStockItemRequest,
     BatchStockItemActionRequest
 )
-from dto.responses import (
+from services.inventory_service.dto.responses import (
     StockItemSummaryResponse,
     StockItemDetailResponse,
     StockItemPageResponse,
@@ -25,9 +25,9 @@ from dto.responses import (
     StockReservationResponse,
     StatusHistoryResponse
 )
-from repositories.repository import StockItemRepository
-from services.cache_service import StockItemCacheService
-from events.producers import StockItemEventProducer
+from services.inventory_service.repositories.repository import StockItemRepository
+from services.inventory_service.services.cache_service import StockItemCacheService
+from services.inventory_service.events.producers import StockItemEventProducer
 from shared.utils.pagination import PageMetadata
 
 logger = logging.getLogger("inventory_service.service")

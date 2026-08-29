@@ -1,8 +1,8 @@
 """Async Repository Implementation for User Profile Service."""
 
 from typing import Dict, List, Optional, Tuple
-from domain.models import UserProfileAggregate, CustomerAddress, UserPreference
-from domain.exceptions import UserProfileNotFoundException
+from services.user_service.domain.models import UserProfileAggregate, CustomerAddress, UserPreference
+from services.user_service.domain.exceptions import UserProfileNotFoundException
 
 class UserProfileRepository:
     """Async data access repository supporting filtering, pagination, and transactional saves."""

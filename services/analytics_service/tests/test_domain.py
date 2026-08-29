@@ -1,8 +1,8 @@
 """Domain Unit Tests for Analytics & BI Service."""
 
 import pytest
-from domain.models import StreamMetricRecordAggregate, TimeSeriesDataPoint, AggregationDimension
-from domain.exceptions import (
+from services.analytics_service.domain.models import StreamMetricRecordAggregate, TimeSeriesDataPoint, AggregationDimension
+from services.analytics_service.domain.exceptions import (
     InvalidStreamMetricRecordStateTransitionException,
     StreamMetricRecordValidationException,
     StreamMetricRecordQuotaExceededException

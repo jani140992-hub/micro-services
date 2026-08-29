@@ -3,7 +3,7 @@
 import json
 import logging
 from typing import Any, Dict, Optional
-from domain.models import StockItemAggregate
+from services.inventory_service.domain.models import StockItemAggregate
 
 logger = logging.getLogger("inventory_service.cache")
 

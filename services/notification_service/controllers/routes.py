@@ -2,8 +2,8 @@
 
 from typing import Optional
 from fastapi import APIRouter, Depends, HTTPException, Query, status
-from domain.exceptions import NotificationMessageNotFoundException, NotificationMessageAlreadyExistsException
-from dto.requests import (
+from services.notification_service.domain.exceptions import NotificationMessageNotFoundException, NotificationMessageAlreadyExistsException
+from services.notification_service.dto.requests import (
     CreateNotificationMessageRequest,
     UpdateNotificationMessageRequest,
     ChangeNotificationMessageStatusRequest,
@@ -12,16 +12,16 @@ from dto.requests import (
     QueryNotificationMessageRequest,
     BatchNotificationMessageActionRequest
 )
-from dto.responses import (
+from services.notification_service.dto.responses import (
     NotificationMessageSummaryResponse,
     NotificationMessageDetailResponse,
     NotificationMessagePageResponse,
     BatchActionResultResponse
 )
-from services.service import NotificationMessageService
-from repositories.repository import NotificationMessageRepository
-from services.cache_service import NotificationMessageCacheService
-from events.producers import NotificationMessageEventProducer
+from services.notification_service.services.service import NotificationMessageService
+from services.notification_service.repositories.repository import NotificationMessageRepository
+from services.notification_service.services.cache_service import NotificationMessageCacheService
+from services.notification_service.events.producers import NotificationMessageEventProducer
 
 router = APIRouter(prefix="/api/v1/notifications", tags=["Notification & Messaging Service"])
 

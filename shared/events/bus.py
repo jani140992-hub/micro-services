@@ -1,7 +1,7 @@
 import asyncio
 import logging
 from abc import ABC, abstractmethod
-from typing import Callable, Coroutine, Dict, List, Type
+from typing import Any, Callable, Coroutine, Dict, List, Type
 from .base import EventBase
 
 logger = logging.getLogger("shared.events.bus")

@@ -1,8 +1,8 @@
 """Domain Unit Tests for Order Management Service."""
 
 import pytest
-from domain.models import CustomerOrderAggregate, OrderLineItem, OrderStatusRecord
-from domain.exceptions import (
+from services.order_service.domain.models import CustomerOrderAggregate, OrderLineItem, OrderStatusRecord
+from services.order_service.domain.exceptions import (
     InvalidCustomerOrderStateTransitionException,
     CustomerOrderValidationException,
     CustomerOrderQuotaExceededException

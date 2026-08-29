@@ -1,8 +1,8 @@
 """Async Repository Implementation for Identity & Authentication Service."""
 
 from typing import Dict, List, Optional, Tuple
-from domain.models import UserCredentialAggregate, UserSession, RoleAssignment
-from domain.exceptions import UserCredentialNotFoundException
+from services.identity_service.domain.models import UserCredentialAggregate, UserSession, RoleAssignment
+from services.identity_service.domain.exceptions import UserCredentialNotFoundException
 
 class UserCredentialRepository:
     """Async data access repository supporting filtering, pagination, and transactional saves."""

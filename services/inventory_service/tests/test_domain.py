@@ -1,8 +1,8 @@
 """Domain Unit Tests for Inventory Management Service."""
 
 import pytest
-from domain.models import StockItemAggregate, WarehouseLocation, StockReservation
-from domain.exceptions import (
+from services.inventory_service.domain.models import StockItemAggregate, WarehouseLocation, StockReservation
+from services.inventory_service.domain.exceptions import (
     InvalidStockItemStateTransitionException,
     StockItemValidationException,
     StockItemQuotaExceededException

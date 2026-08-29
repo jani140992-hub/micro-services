@@ -4,8 +4,8 @@ import uuid
 import random
 import string
 from typing import Any, Dict, List
-from domain.models import UserProfileAggregate, CustomerAddress, UserPreference
-from dto.requests import CreateUserProfileRequest, AddCustomerAddressRequest, AddUserPreferenceRequest
+from services.user_service.domain.models import UserProfileAggregate, CustomerAddress, UserPreference
+from services.user_service.dto.requests import CreateUserProfileRequest, AddCustomerAddressRequest, AddUserPreferenceRequest
 
 class UserProfileFixtureFactory:
     """Generates deterministic mock domain objects and DTOs for testing."""

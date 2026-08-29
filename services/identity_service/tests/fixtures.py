@@ -4,8 +4,8 @@ import uuid
 import random
 import string
 from typing import Any, Dict, List
-from domain.models import UserCredentialAggregate, UserSession, RoleAssignment
-from dto.requests import CreateUserCredentialRequest, AddUserSessionRequest, AddRoleAssignmentRequest
+from services.identity_service.domain.models import UserCredentialAggregate, UserSession, RoleAssignment
+from services.identity_service.dto.requests import CreateUserCredentialRequest, AddUserSessionRequest, AddRoleAssignmentRequest
 
 class UserCredentialFixtureFactory:
     """Generates deterministic mock domain objects and DTOs for testing."""

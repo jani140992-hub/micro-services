@@ -2,8 +2,8 @@
 
 from typing import Optional
 from fastapi import APIRouter, Depends, HTTPException, Query, status
-from domain.exceptions import StockItemNotFoundException, StockItemAlreadyExistsException
-from dto.requests import (
+from services.inventory_service.domain.exceptions import StockItemNotFoundException, StockItemAlreadyExistsException
+from services.inventory_service.dto.requests import (
     CreateStockItemRequest,
     UpdateStockItemRequest,
     ChangeStockItemStatusRequest,
@@ -12,16 +12,16 @@ from dto.requests import (
     QueryStockItemRequest,
     BatchStockItemActionRequest
 )
-from dto.responses import (
+from services.inventory_service.dto.responses import (
     StockItemSummaryResponse,
     StockItemDetailResponse,
     StockItemPageResponse,
     BatchActionResultResponse
 )
-from services.service import StockItemService
-from repositories.repository import StockItemRepository
-from services.cache_service import StockItemCacheService
-from events.producers import StockItemEventProducer
+from services.inventory_service.services.service import StockItemService
+from services.inventory_service.repositories.repository import StockItemRepository
+from services.inventory_service.services.cache_service import StockItemCacheService
+from services.inventory_service.events.producers import StockItemEventProducer
 
 router = APIRouter(prefix="/api/v1/stock", tags=["Inventory Management Service"])
 

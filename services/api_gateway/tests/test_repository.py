@@ -1,8 +1,8 @@
 """Repository Unit Tests for API Gateway Service."""
 
 import pytest
-from domain.models import GatewayRouteAggregate
-from repositories.repository import GatewayRouteRepository
+from services.api_gateway.domain.models import GatewayRouteAggregate
+from services.api_gateway.repositories.repository import GatewayRouteRepository
 
 @pytest.mark.asyncio
 async def test_api_gateway_repo_crud_operations():

@@ -1,8 +1,8 @@
 """Repository Unit Tests for Shipping & Logistics Service."""
 
 import pytest
-from domain.models import ShipmentConsignmentAggregate
-from repositories.repository import ShipmentConsignmentRepository
+from services.shipping_service.domain.models import ShipmentConsignmentAggregate
+from services.shipping_service.repositories.repository import ShipmentConsignmentRepository
 
 @pytest.mark.asyncio
 async def test_shipping_service_repo_crud_operations():

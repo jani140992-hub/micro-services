@@ -2,12 +2,12 @@
 
 import logging
 from typing import Any, Dict, List, Optional
-from domain.models import NotificationMessageAggregate, DeliveryAttemptRecord, TemplateVariable
-from domain.exceptions import (
+from services.notification_service.domain.models import NotificationMessageAggregate, DeliveryAttemptRecord, TemplateVariable
+from services.notification_service.domain.exceptions import (
     NotificationMessageNotFoundException,
     NotificationMessageAlreadyExistsException
 )
-from dto.requests import (
+from services.notification_service.dto.requests import (
     CreateNotificationMessageRequest,
     UpdateNotificationMessageRequest,
     ChangeNotificationMessageStatusRequest,
@@ -16,7 +16,7 @@ from dto.requests import (
     QueryNotificationMessageRequest,
     BatchNotificationMessageActionRequest
 )
-from dto.responses import (
+from services.notification_service.dto.responses import (
     NotificationMessageSummaryResponse,
     NotificationMessageDetailResponse,
     NotificationMessagePageResponse,
@@ -25,9 +25,9 @@ from dto.responses import (
     TemplateVariableResponse,
     StatusHistoryResponse
 )
-from repositories.repository import NotificationMessageRepository
-from services.cache_service import NotificationMessageCacheService
-from events.producers import NotificationMessageEventProducer
+from services.notification_service.repositories.repository import NotificationMessageRepository
+from services.notification_service.services.cache_service import NotificationMessageCacheService
+from services.notification_service.events.producers import NotificationMessageEventProducer
 from shared.utils.pagination import PageMetadata
 
 logger = logging.getLogger("notification_service.service")

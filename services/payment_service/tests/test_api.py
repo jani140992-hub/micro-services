@@ -2,7 +2,7 @@
 
 import pytest
 from httpx import AsyncClient, ASGITransport
-from main import app
+from services.payment_service.main import app
 
 @pytest.mark.asyncio
 async def test_payment_service_health_probe():

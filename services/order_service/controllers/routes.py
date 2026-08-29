@@ -2,8 +2,8 @@
 
 from typing import Optional
 from fastapi import APIRouter, Depends, HTTPException, Query, status
-from domain.exceptions import CustomerOrderNotFoundException, CustomerOrderAlreadyExistsException
-from dto.requests import (
+from services.order_service.domain.exceptions import CustomerOrderNotFoundException, CustomerOrderAlreadyExistsException
+from services.order_service.dto.requests import (
     CreateCustomerOrderRequest,
     UpdateCustomerOrderRequest,
     ChangeCustomerOrderStatusRequest,
@@ -12,16 +12,16 @@ from dto.requests import (
     QueryCustomerOrderRequest,
     BatchCustomerOrderActionRequest
 )
-from dto.responses import (
+from services.order_service.dto.responses import (
     CustomerOrderSummaryResponse,
     CustomerOrderDetailResponse,
     CustomerOrderPageResponse,
     BatchActionResultResponse
 )
-from services.service import CustomerOrderService
-from repositories.repository import CustomerOrderRepository
-from services.cache_service import CustomerOrderCacheService
-from events.producers import CustomerOrderEventProducer
+from services.order_service.services.service import CustomerOrderService
+from services.order_service.repositories.repository import CustomerOrderRepository
+from services.order_service.services.cache_service import CustomerOrderCacheService
+from services.order_service.events.producers import CustomerOrderEventProducer
 
 router = APIRouter(prefix="/api/v1/orders", tags=["Order Management Service"])
 

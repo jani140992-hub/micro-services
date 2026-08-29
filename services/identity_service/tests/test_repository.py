@@ -1,8 +1,8 @@
 """Repository Unit Tests for Identity & Authentication Service."""
 
 import pytest
-from domain.models import UserCredentialAggregate
-from repositories.repository import UserCredentialRepository
+from services.identity_service.domain.models import UserCredentialAggregate
+from services.identity_service.repositories.repository import UserCredentialRepository
 
 @pytest.mark.asyncio
 async def test_identity_service_repo_crud_operations():

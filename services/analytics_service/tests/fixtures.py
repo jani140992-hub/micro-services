@@ -4,8 +4,8 @@ import uuid
 import random
 import string
 from typing import Any, Dict, List
-from domain.models import StreamMetricRecordAggregate, TimeSeriesDataPoint, AggregationDimension
-from dto.requests import CreateStreamMetricRecordRequest, AddTimeSeriesDataPointRequest, AddAggregationDimensionRequest
+from services.analytics_service.domain.models import StreamMetricRecordAggregate, TimeSeriesDataPoint, AggregationDimension
+from services.analytics_service.dto.requests import CreateStreamMetricRecordRequest, AddTimeSeriesDataPointRequest, AddAggregationDimensionRequest
 
 class StreamMetricRecordFixtureFactory:
     """Generates deterministic mock domain objects and DTOs for testing."""

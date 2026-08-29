@@ -1,8 +1,8 @@
 """Async Repository Implementation for Analytics & BI Service."""
 
 from typing import Dict, List, Optional, Tuple
-from domain.models import StreamMetricRecordAggregate, TimeSeriesDataPoint, AggregationDimension
-from domain.exceptions import StreamMetricRecordNotFoundException
+from services.analytics_service.domain.models import StreamMetricRecordAggregate, TimeSeriesDataPoint, AggregationDimension
+from services.analytics_service.domain.exceptions import StreamMetricRecordNotFoundException
 
 class StreamMetricRecordRepository:
     """Async data access repository supporting filtering, pagination, and transactional saves."""

@@ -1,8 +1,8 @@
 """Domain Unit Tests for User Profile Service."""
 
 import pytest
-from domain.models import UserProfileAggregate, CustomerAddress, UserPreference
-from domain.exceptions import (
+from services.user_service.domain.models import UserProfileAggregate, CustomerAddress, UserPreference
+from services.user_service.domain.exceptions import (
     InvalidUserProfileStateTransitionException,
     UserProfileValidationException,
     UserProfileQuotaExceededException

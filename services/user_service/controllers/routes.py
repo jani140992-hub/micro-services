@@ -2,8 +2,8 @@
 
 from typing import Optional
 from fastapi import APIRouter, Depends, HTTPException, Query, status
-from domain.exceptions import UserProfileNotFoundException, UserProfileAlreadyExistsException
-from dto.requests import (
+from services.user_service.domain.exceptions import UserProfileNotFoundException, UserProfileAlreadyExistsException
+from services.user_service.dto.requests import (
     CreateUserProfileRequest,
     UpdateUserProfileRequest,
     ChangeUserProfileStatusRequest,
@@ -12,16 +12,16 @@ from dto.requests import (
     QueryUserProfileRequest,
     BatchUserProfileActionRequest
 )
-from dto.responses import (
+from services.user_service.dto.responses import (
     UserProfileSummaryResponse,
     UserProfileDetailResponse,
     UserProfilePageResponse,
     BatchActionResultResponse
 )
-from services.service import UserProfileService
-from repositories.repository import UserProfileRepository
-from services.cache_service import UserProfileCacheService
-from events.producers import UserProfileEventProducer
+from services.user_service.services.service import UserProfileService
+from services.user_service.repositories.repository import UserProfileRepository
+from services.user_service.services.cache_service import UserProfileCacheService
+from services.user_service.events.producers import UserProfileEventProducer
 
 router = APIRouter(prefix="/api/v1/profiles", tags=["User Profile Service"])
 

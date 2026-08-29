@@ -3,7 +3,7 @@
 import json
 import logging
 from typing import Any, Dict, Optional
-from domain.models import ShipmentConsignmentAggregate
+from services.shipping_service.domain.models import ShipmentConsignmentAggregate
 
 logger = logging.getLogger("shipping_service.cache")
 

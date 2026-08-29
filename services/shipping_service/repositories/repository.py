@@ -1,8 +1,8 @@
 """Async Repository Implementation for Shipping & Logistics Service."""
 
 from typing import Dict, List, Optional, Tuple
-from domain.models import ShipmentConsignmentAggregate, TrackingCheckpoint, ShippingManifest
-from domain.exceptions import ShipmentConsignmentNotFoundException
+from services.shipping_service.domain.models import ShipmentConsignmentAggregate, TrackingCheckpoint, ShippingManifest
+from services.shipping_service.domain.exceptions import ShipmentConsignmentNotFoundException
 
 class ShipmentConsignmentRepository:
     """Async data access repository supporting filtering, pagination, and transactional saves."""

@@ -1,11 +1,11 @@
 """Application Service Unit Tests for Order Management Service."""
 
 import pytest
-from services.service import CustomerOrderService
-from repositories.repository import CustomerOrderRepository
-from services.cache_service import CustomerOrderCacheService
-from events.producers import CustomerOrderEventProducer
-from dto.requests import (
+from services.order_service.services.service import CustomerOrderService
+from services.order_service.repositories.repository import CustomerOrderRepository
+from services.order_service.services.cache_service import CustomerOrderCacheService
+from services.order_service.events.producers import CustomerOrderEventProducer
+from services.order_service.dto.requests import (
     CreateCustomerOrderRequest,
     UpdateCustomerOrderRequest,
     ChangeCustomerOrderStatusRequest,
@@ -14,7 +14,7 @@ from dto.requests import (
     QueryCustomerOrderRequest,
     BatchCustomerOrderActionRequest
 )
-from domain.exceptions import CustomerOrderNotFoundException, CustomerOrderAlreadyExistsException
+from services.order_service.domain.exceptions import CustomerOrderNotFoundException, CustomerOrderAlreadyExistsException
 
 @pytest.fixture
 def service():

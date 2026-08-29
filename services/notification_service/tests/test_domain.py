@@ -1,8 +1,8 @@
 """Domain Unit Tests for Notification & Messaging Service."""
 
 import pytest
-from domain.models import NotificationMessageAggregate, DeliveryAttemptRecord, TemplateVariable
-from domain.exceptions import (
+from services.notification_service.domain.models import NotificationMessageAggregate, DeliveryAttemptRecord, TemplateVariable
+from services.notification_service.domain.exceptions import (
     InvalidNotificationMessageStateTransitionException,
     NotificationMessageValidationException,
     NotificationMessageQuotaExceededException

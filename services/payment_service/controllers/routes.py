@@ -2,8 +2,8 @@
 
 from typing import Optional
 from fastapi import APIRouter, Depends, HTTPException, Query, status
-from domain.exceptions import PaymentTransactionNotFoundException, PaymentTransactionAlreadyExistsException
-from dto.requests import (
+from services.payment_service.domain.exceptions import PaymentTransactionNotFoundException, PaymentTransactionAlreadyExistsException
+from services.payment_service.dto.requests import (
     CreatePaymentTransactionRequest,
     UpdatePaymentTransactionRequest,
     ChangePaymentTransactionStatusRequest,
@@ -12,16 +12,16 @@ from dto.requests import (
     QueryPaymentTransactionRequest,
     BatchPaymentTransactionActionRequest
 )
-from dto.responses import (
+from services.payment_service.dto.responses import (
     PaymentTransactionSummaryResponse,
     PaymentTransactionDetailResponse,
     PaymentTransactionPageResponse,
     BatchActionResultResponse
 )
-from services.service import PaymentTransactionService
-from repositories.repository import PaymentTransactionRepository
-from services.cache_service import PaymentTransactionCacheService
-from events.producers import PaymentTransactionEventProducer
+from services.payment_service.services.service import PaymentTransactionService
+from services.payment_service.repositories.repository import PaymentTransactionRepository
+from services.payment_service.services.cache_service import PaymentTransactionCacheService
+from services.payment_service.events.producers import PaymentTransactionEventProducer
 
 router = APIRouter(prefix="/api/v1/payments", tags=["Payment & Billing Service"])
 

@@ -2,12 +2,12 @@
 
 import logging
 from typing import Any, Dict, List, Optional
-from domain.models import PaymentTransactionAggregate, LedgerEntry, RefundItem
-from domain.exceptions import (
+from services.payment_service.domain.models import PaymentTransactionAggregate, LedgerEntry, RefundItem
+from services.payment_service.domain.exceptions import (
     PaymentTransactionNotFoundException,
     PaymentTransactionAlreadyExistsException
 )
-from dto.requests import (
+from services.payment_service.dto.requests import (
     CreatePaymentTransactionRequest,
     UpdatePaymentTransactionRequest,
     ChangePaymentTransactionStatusRequest,
@@ -16,7 +16,7 @@ from dto.requests import (
     QueryPaymentTransactionRequest,
     BatchPaymentTransactionActionRequest
 )
-from dto.responses import (
+from services.payment_service.dto.responses import (
     PaymentTransactionSummaryResponse,
     PaymentTransactionDetailResponse,
     PaymentTransactionPageResponse,
@@ -25,9 +25,9 @@ from dto.responses import (
     RefundItemResponse,
     StatusHistoryResponse
 )
-from repositories.repository import PaymentTransactionRepository
-from services.cache_service import PaymentTransactionCacheService
-from events.producers import PaymentTransactionEventProducer
+from services.payment_service.repositories.repository import PaymentTransactionRepository
+from services.payment_service.services.cache_service import PaymentTransactionCacheService
+from services.payment_service.events.producers import PaymentTransactionEventProducer
 from shared.utils.pagination import PageMetadata
 
 logger = logging.getLogger("payment_service.service")

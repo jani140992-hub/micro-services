@@ -2,12 +2,12 @@
 
 import logging
 from typing import Any, Dict, List, Optional
-from domain.models import StreamMetricRecordAggregate, TimeSeriesDataPoint, AggregationDimension
-from domain.exceptions import (
+from services.analytics_service.domain.models import StreamMetricRecordAggregate, TimeSeriesDataPoint, AggregationDimension
+from services.analytics_service.domain.exceptions import (
     StreamMetricRecordNotFoundException,
     StreamMetricRecordAlreadyExistsException
 )
-from dto.requests import (
+from services.analytics_service.dto.requests import (
     CreateStreamMetricRecordRequest,
     UpdateStreamMetricRecordRequest,
     ChangeStreamMetricRecordStatusRequest,
@@ -16,7 +16,7 @@ from dto.requests import (
     QueryStreamMetricRecordRequest,
     BatchStreamMetricRecordActionRequest
 )
-from dto.responses import (
+from services.analytics_service.dto.responses import (
     StreamMetricRecordSummaryResponse,
     StreamMetricRecordDetailResponse,
     StreamMetricRecordPageResponse,
@@ -25,9 +25,9 @@ from dto.responses import (
     AggregationDimensionResponse,
     StatusHistoryResponse
 )
-from repositories.repository import StreamMetricRecordRepository
-from services.cache_service import StreamMetricRecordCacheService
-from events.producers import StreamMetricRecordEventProducer
+from services.analytics_service.repositories.repository import StreamMetricRecordRepository
+from services.analytics_service.services.cache_service import StreamMetricRecordCacheService
+from services.analytics_service.events.producers import StreamMetricRecordEventProducer
 from shared.utils.pagination import PageMetadata
 
 logger = logging.getLogger("analytics_service.service")

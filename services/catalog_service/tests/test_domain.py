@@ -1,8 +1,8 @@
 """Domain Unit Tests for Product Catalog Service."""
 
 import pytest
-from domain.models import ProductItemAggregate, ProductVariant, ProductAttribute
-from domain.exceptions import (
+from services.catalog_service.domain.models import ProductItemAggregate, ProductVariant, ProductAttribute
+from services.catalog_service.domain.exceptions import (
     InvalidProductItemStateTransitionException,
     ProductItemValidationException,
     ProductItemQuotaExceededException

@@ -1,8 +1,8 @@
 """Repository Unit Tests for Order Management Service."""
 
 import pytest
-from domain.models import CustomerOrderAggregate
-from repositories.repository import CustomerOrderRepository
+from services.order_service.domain.models import CustomerOrderAggregate
+from services.order_service.repositories.repository import CustomerOrderRepository
 
 @pytest.mark.asyncio
 async def test_order_service_repo_crud_operations():

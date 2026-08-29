@@ -1,8 +1,8 @@
 """Async Repository Implementation for Inventory Management Service."""
 
 from typing import Dict, List, Optional, Tuple
-from domain.models import StockItemAggregate, WarehouseLocation, StockReservation
-from domain.exceptions import StockItemNotFoundException
+from services.inventory_service.domain.models import StockItemAggregate, WarehouseLocation, StockReservation
+from services.inventory_service.domain.exceptions import StockItemNotFoundException
 
 class StockItemRepository:
     """Async data access repository supporting filtering, pagination, and transactional saves."""

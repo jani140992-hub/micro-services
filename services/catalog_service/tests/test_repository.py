@@ -1,8 +1,8 @@
 """Repository Unit Tests for Product Catalog Service."""
 
 import pytest
-from domain.models import ProductItemAggregate
-from repositories.repository import ProductItemRepository
+from services.catalog_service.domain.models import ProductItemAggregate
+from services.catalog_service.repositories.repository import ProductItemRepository
 
 @pytest.mark.asyncio
 async def test_catalog_service_repo_crud_operations():

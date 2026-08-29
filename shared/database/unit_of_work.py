@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from typing import Any
 
 class IUnitOfWork(ABC):
     async def __aenter__(self) -> "IUnitOfWork":

@@ -1,8 +1,8 @@
 """Async Repository Implementation for Notification & Messaging Service."""
 
 from typing import Dict, List, Optional, Tuple
-from domain.models import NotificationMessageAggregate, DeliveryAttemptRecord, TemplateVariable
-from domain.exceptions import NotificationMessageNotFoundException
+from services.notification_service.domain.models import NotificationMessageAggregate, DeliveryAttemptRecord, TemplateVariable
+from services.notification_service.domain.exceptions import NotificationMessageNotFoundException
 
 class NotificationMessageRepository:
     """Async data access repository supporting filtering, pagination, and transactional saves."""

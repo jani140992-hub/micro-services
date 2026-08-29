@@ -1,8 +1,8 @@
 """Async Repository Implementation for API Gateway Service."""
 
 from typing import Dict, List, Optional, Tuple
-from domain.models import GatewayRouteAggregate, RoutePredicate, RouteFilter
-from domain.exceptions import GatewayRouteNotFoundException
+from services.api_gateway.domain.models import GatewayRouteAggregate, RoutePredicate, RouteFilter
+from services.api_gateway.domain.exceptions import GatewayRouteNotFoundException
 
 class GatewayRouteRepository:
     """Async data access repository supporting filtering, pagination, and transactional saves."""

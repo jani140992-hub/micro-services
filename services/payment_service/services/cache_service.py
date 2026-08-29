@@ -3,7 +3,7 @@
 import json
 import logging
 from typing import Any, Dict, Optional
-from domain.models import PaymentTransactionAggregate
+from services.payment_service.domain.models import PaymentTransactionAggregate
 
 logger = logging.getLogger("payment_service.cache")
 

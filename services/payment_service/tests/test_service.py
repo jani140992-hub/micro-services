@@ -1,11 +1,11 @@
 """Application Service Unit Tests for Payment & Billing Service."""
 
 import pytest
-from services.service import PaymentTransactionService
-from repositories.repository import PaymentTransactionRepository
-from services.cache_service import PaymentTransactionCacheService
-from events.producers import PaymentTransactionEventProducer
-from dto.requests import (
+from services.payment_service.services.service import PaymentTransactionService
+from services.payment_service.repositories.repository import PaymentTransactionRepository
+from services.payment_service.services.cache_service import PaymentTransactionCacheService
+from services.payment_service.events.producers import PaymentTransactionEventProducer
+from services.payment_service.dto.requests import (
     CreatePaymentTransactionRequest,
     UpdatePaymentTransactionRequest,
     ChangePaymentTransactionStatusRequest,
@@ -14,7 +14,7 @@ from dto.requests import (
     QueryPaymentTransactionRequest,
     BatchPaymentTransactionActionRequest
 )
-from domain.exceptions import PaymentTransactionNotFoundException, PaymentTransactionAlreadyExistsException
+from services.payment_service.domain.exceptions import PaymentTransactionNotFoundException, PaymentTransactionAlreadyExistsException
 
 @pytest.fixture
 def service():

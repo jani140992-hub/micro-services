@@ -2,12 +2,12 @@
 
 import logging
 from typing import Any, Dict, List, Optional
-from domain.models import ProductItemAggregate, ProductVariant, ProductAttribute
-from domain.exceptions import (
+from services.catalog_service.domain.models import ProductItemAggregate, ProductVariant, ProductAttribute
+from services.catalog_service.domain.exceptions import (
     ProductItemNotFoundException,
     ProductItemAlreadyExistsException
 )
-from dto.requests import (
+from services.catalog_service.dto.requests import (
     CreateProductItemRequest,
     UpdateProductItemRequest,
     ChangeProductItemStatusRequest,
@@ -16,7 +16,7 @@ from dto.requests import (
     QueryProductItemRequest,
     BatchProductItemActionRequest
 )
-from dto.responses import (
+from services.catalog_service.dto.responses import (
     ProductItemSummaryResponse,
     ProductItemDetailResponse,
     ProductItemPageResponse,
@@ -25,9 +25,9 @@ from dto.responses import (
     ProductAttributeResponse,
     StatusHistoryResponse
 )
-from repositories.repository import ProductItemRepository
-from services.cache_service import ProductItemCacheService
-from events.producers import ProductItemEventProducer
+from services.catalog_service.repositories.repository import ProductItemRepository
+from services.catalog_service.services.cache_service import ProductItemCacheService
+from services.catalog_service.events.producers import ProductItemEventProducer
 from shared.utils.pagination import PageMetadata
 
 logger = logging.getLogger("catalog_service.service")

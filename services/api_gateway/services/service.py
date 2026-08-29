@@ -2,12 +2,12 @@
 
 import logging
 from typing import Any, Dict, List, Optional
-from domain.models import GatewayRouteAggregate, RoutePredicate, RouteFilter
-from domain.exceptions import (
+from services.api_gateway.domain.models import GatewayRouteAggregate, RoutePredicate, RouteFilter
+from services.api_gateway.domain.exceptions import (
     GatewayRouteNotFoundException,
     GatewayRouteAlreadyExistsException
 )
-from dto.requests import (
+from services.api_gateway.dto.requests import (
     CreateGatewayRouteRequest,
     UpdateGatewayRouteRequest,
     ChangeGatewayRouteStatusRequest,
@@ -16,7 +16,7 @@ from dto.requests import (
     QueryGatewayRouteRequest,
     BatchGatewayRouteActionRequest
 )
-from dto.responses import (
+from services.api_gateway.dto.responses import (
     GatewayRouteSummaryResponse,
     GatewayRouteDetailResponse,
     GatewayRoutePageResponse,
@@ -25,9 +25,9 @@ from dto.responses import (
     RouteFilterResponse,
     StatusHistoryResponse
 )
-from repositories.repository import GatewayRouteRepository
-from services.cache_service import GatewayRouteCacheService
-from events.producers import GatewayRouteEventProducer
+from services.api_gateway.repositories.repository import GatewayRouteRepository
+from services.api_gateway.services.cache_service import GatewayRouteCacheService
+from services.api_gateway.events.producers import GatewayRouteEventProducer
 from shared.utils.pagination import PageMetadata
 
 logger = logging.getLogger("api_gateway.service")

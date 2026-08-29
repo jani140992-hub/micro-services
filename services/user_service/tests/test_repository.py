@@ -1,8 +1,8 @@
 """Repository Unit Tests for User Profile Service."""
 
 import pytest
-from domain.models import UserProfileAggregate
-from repositories.repository import UserProfileRepository
+from services.user_service.domain.models import UserProfileAggregate
+from services.user_service.repositories.repository import UserProfileRepository
 
 @pytest.mark.asyncio
 async def test_user_service_repo_crud_operations():

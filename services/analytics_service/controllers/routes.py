@@ -2,8 +2,8 @@
 
 from typing import Optional
 from fastapi import APIRouter, Depends, HTTPException, Query, status
-from domain.exceptions import StreamMetricRecordNotFoundException, StreamMetricRecordAlreadyExistsException
-from dto.requests import (
+from services.analytics_service.domain.exceptions import StreamMetricRecordNotFoundException, StreamMetricRecordAlreadyExistsException
+from services.analytics_service.dto.requests import (
     CreateStreamMetricRecordRequest,
     UpdateStreamMetricRecordRequest,
     ChangeStreamMetricRecordStatusRequest,
@@ -12,16 +12,16 @@ from dto.requests import (
     QueryStreamMetricRecordRequest,
     BatchStreamMetricRecordActionRequest
 )
-from dto.responses import (
+from services.analytics_service.dto.responses import (
     StreamMetricRecordSummaryResponse,
     StreamMetricRecordDetailResponse,
     StreamMetricRecordPageResponse,
     BatchActionResultResponse
 )
-from services.service import StreamMetricRecordService
-from repositories.repository import StreamMetricRecordRepository
-from services.cache_service import StreamMetricRecordCacheService
-from events.producers import StreamMetricRecordEventProducer
+from services.analytics_service.services.service import StreamMetricRecordService
+from services.analytics_service.repositories.repository import StreamMetricRecordRepository
+from services.analytics_service.services.cache_service import StreamMetricRecordCacheService
+from services.analytics_service.events.producers import StreamMetricRecordEventProducer
 
 router = APIRouter(prefix="/api/v1/metrics", tags=["Analytics & BI Service"])
 

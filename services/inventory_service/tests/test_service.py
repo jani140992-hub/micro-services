@@ -1,11 +1,11 @@
 """Application Service Unit Tests for Inventory Management Service."""
 
 import pytest
-from services.service import StockItemService
-from repositories.repository import StockItemRepository
-from services.cache_service import StockItemCacheService
-from events.producers import StockItemEventProducer
-from dto.requests import (
+from services.inventory_service.services.service import StockItemService
+from services.inventory_service.repositories.repository import StockItemRepository
+from services.inventory_service.services.cache_service import StockItemCacheService
+from services.inventory_service.events.producers import StockItemEventProducer
+from services.inventory_service.dto.requests import (
     CreateStockItemRequest,
     UpdateStockItemRequest,
     ChangeStockItemStatusRequest,
@@ -14,7 +14,7 @@ from dto.requests import (
     QueryStockItemRequest,
     BatchStockItemActionRequest
 )
-from domain.exceptions import StockItemNotFoundException, StockItemAlreadyExistsException
+from services.inventory_service.domain.exceptions import StockItemNotFoundException, StockItemAlreadyExistsException
 
 @pytest.fixture
 def service():

@@ -4,8 +4,8 @@ import uuid
 import random
 import string
 from typing import Any, Dict, List
-from domain.models import GatewayRouteAggregate, RoutePredicate, RouteFilter
-from dto.requests import CreateGatewayRouteRequest, AddRoutePredicateRequest, AddRouteFilterRequest
+from services.api_gateway.domain.models import GatewayRouteAggregate, RoutePredicate, RouteFilter
+from services.api_gateway.dto.requests import CreateGatewayRouteRequest, AddRoutePredicateRequest, AddRouteFilterRequest
 
 class GatewayRouteFixtureFactory:
     """Generates deterministic mock domain objects and DTOs for testing."""

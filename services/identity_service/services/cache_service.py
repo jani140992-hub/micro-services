@@ -3,7 +3,7 @@
 import json
 import logging
 from typing import Any, Dict, Optional
-from domain.models import UserCredentialAggregate
+from services.identity_service.domain.models import UserCredentialAggregate
 
 logger = logging.getLogger("identity_service.cache")
 

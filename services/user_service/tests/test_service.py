@@ -1,11 +1,11 @@
 """Application Service Unit Tests for User Profile Service."""
 
 import pytest
-from services.service import UserProfileService
-from repositories.repository import UserProfileRepository
-from services.cache_service import UserProfileCacheService
-from events.producers import UserProfileEventProducer
-from dto.requests import (
+from services.user_service.services.service import UserProfileService
+from services.user_service.repositories.repository import UserProfileRepository
+from services.user_service.services.cache_service import UserProfileCacheService
+from services.user_service.events.producers import UserProfileEventProducer
+from services.user_service.dto.requests import (
     CreateUserProfileRequest,
     UpdateUserProfileRequest,
     ChangeUserProfileStatusRequest,
@@ -14,7 +14,7 @@ from dto.requests import (
     QueryUserProfileRequest,
     BatchUserProfileActionRequest
 )
-from domain.exceptions import UserProfileNotFoundException, UserProfileAlreadyExistsException
+from services.user_service.domain.exceptions import UserProfileNotFoundException, UserProfileAlreadyExistsException
 
 @pytest.fixture
 def service():

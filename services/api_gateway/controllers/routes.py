@@ -2,8 +2,8 @@
 
 from typing import Optional
 from fastapi import APIRouter, Depends, HTTPException, Query, status
-from domain.exceptions import GatewayRouteNotFoundException, GatewayRouteAlreadyExistsException
-from dto.requests import (
+from services.api_gateway.domain.exceptions import GatewayRouteNotFoundException, GatewayRouteAlreadyExistsException
+from services.api_gateway.dto.requests import (
     CreateGatewayRouteRequest,
     UpdateGatewayRouteRequest,
     ChangeGatewayRouteStatusRequest,
@@ -12,16 +12,16 @@ from dto.requests import (
     QueryGatewayRouteRequest,
     BatchGatewayRouteActionRequest
 )
-from dto.responses import (
+from services.api_gateway.dto.responses import (
     GatewayRouteSummaryResponse,
     GatewayRouteDetailResponse,
     GatewayRoutePageResponse,
     BatchActionResultResponse
 )
-from services.service import GatewayRouteService
-from repositories.repository import GatewayRouteRepository
-from services.cache_service import GatewayRouteCacheService
-from events.producers import GatewayRouteEventProducer
+from services.api_gateway.services.service import GatewayRouteService
+from services.api_gateway.repositories.repository import GatewayRouteRepository
+from services.api_gateway.services.cache_service import GatewayRouteCacheService
+from services.api_gateway.events.producers import GatewayRouteEventProducer
 
 router = APIRouter(prefix="/api/v1/routes", tags=["API Gateway Service"])
 

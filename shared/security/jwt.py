@@ -6,7 +6,7 @@ from pydantic import BaseModel, Field
 
 class TokenPayload(BaseModel):
     sub: str
-    email: str
+    email: Optional[str] = None
     roles: List[str] = Field(default_factory=list)
     permissions: List[str] = Field(default_factory=list)
     exp: int

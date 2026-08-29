@@ -3,7 +3,7 @@
 import json
 import logging
 from typing import Any, Dict, Optional
-from domain.models import UserProfileAggregate
+from services.user_service.domain.models import UserProfileAggregate
 
 logger = logging.getLogger("user_service.cache")
 

@@ -3,7 +3,7 @@
 import json
 import logging
 from typing import Any, Dict, Optional
-from domain.models import StreamMetricRecordAggregate
+from services.analytics_service.domain.models import StreamMetricRecordAggregate
 
 logger = logging.getLogger("analytics_service.cache")
 

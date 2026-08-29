@@ -1,8 +1,8 @@
 """Async Repository Implementation for Order Management Service."""
 
 from typing import Dict, List, Optional, Tuple
-from domain.models import CustomerOrderAggregate, OrderLineItem, OrderStatusRecord
-from domain.exceptions import CustomerOrderNotFoundException
+from services.order_service.domain.models import CustomerOrderAggregate, OrderLineItem, OrderStatusRecord
+from services.order_service.domain.exceptions import CustomerOrderNotFoundException
 
 class CustomerOrderRepository:
     """Async data access repository supporting filtering, pagination, and transactional saves."""

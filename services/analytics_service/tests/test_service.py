@@ -1,11 +1,11 @@
 """Application Service Unit Tests for Analytics & BI Service."""
 
 import pytest
-from services.service import StreamMetricRecordService
-from repositories.repository import StreamMetricRecordRepository
-from services.cache_service import StreamMetricRecordCacheService
-from events.producers import StreamMetricRecordEventProducer
-from dto.requests import (
+from services.analytics_service.services.service import StreamMetricRecordService
+from services.analytics_service.repositories.repository import StreamMetricRecordRepository
+from services.analytics_service.services.cache_service import StreamMetricRecordCacheService
+from services.analytics_service.events.producers import StreamMetricRecordEventProducer
+from services.analytics_service.dto.requests import (
     CreateStreamMetricRecordRequest,
     UpdateStreamMetricRecordRequest,
     ChangeStreamMetricRecordStatusRequest,
@@ -14,7 +14,7 @@ from dto.requests import (
     QueryStreamMetricRecordRequest,
     BatchStreamMetricRecordActionRequest
 )
-from domain.exceptions import StreamMetricRecordNotFoundException, StreamMetricRecordAlreadyExistsException
+from services.analytics_service.domain.exceptions import StreamMetricRecordNotFoundException, StreamMetricRecordAlreadyExistsException
 
 @pytest.fixture
 def service():
