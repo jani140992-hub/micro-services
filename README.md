@@ -4,7 +4,7 @@
 [![Code Style: Ruff](https://img.shields.io/badge/code%20style-ruff-000000.svg)](https://github.com/astral-sh/ruff)
 [![Python Version](https://img.shields.io/badge/python-3.12%2B-blue.svg)](https://www.python.org/downloads/)
 [![Architecture](https://img.shields.io/badge/architecture-Microservices%20DDD-green.svg)](#architecture)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![License: Proprietary](https://img.shields.io/badge/License-Proprietary-red.svg)](LICENSE)
 
 CloudMart is a production-grade, distributed, cloud-native e-commerce and logistics microservices platform designed using **Domain-Driven Design (DDD)**, **Clean / Hexagonal Architecture**, **Event-Driven Choreography and Orchestration (Saga Pattern)**, and **CQRS / Outbox Pattern** for ultra-resilient distributed operations.
 
@@ -119,4 +119,4 @@ pytest tests/
 ---
 
 ## License
-Distributed under the MIT License. See `LICENSE` for more information.
+Proprietary and Confidential. Copyright (c) 2026 jani140992-hub. All Rights Reserved. See `LICENSE` for more information.
