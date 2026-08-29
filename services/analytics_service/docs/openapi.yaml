@@ -1,0 +1,898 @@
+openapi: "3.1.0"
+info:
+  title: "Analytics & BI Service"
+  version: "1.0.0"
+  description: "Real-time streaming event ingestion, windowed metric aggregations, revenue analytics, and Prometheus scraping."
+  contact:
+    name: "CloudMart Enterprise Platform Team"
+    email: "platform-team@cloudmart.internal"
+  license:
+    name: "MIT"
+    url: "https://opensource.org/licenses/MIT"
+servers:
+  - url: "http://localhost:8009/api/v1"
+    description: "Local Development Server"
+  - url: "https://analytics_service.cloudmart.internal/api/v1"
+    description: "Production Kubernetes ClusterIP"
+paths:
+  /metrics:
+    get:
+      summary: "Query StreamMetricRecord items with pagination and filters"
+      operationId: "list_analytics_service_entities"
+      parameters:
+        - name: "search"
+          in: "query"
+          required: false"
+          schema:
+            type: "string"
+            description: "Keyword search term"
+        - name: "status"
+          in: "query"
+          required: false"
+          schema:
+            type: "string"
+            enum: ["DRAFT", "ACTIVE", "SUSPENDED", "ARCHIVED"]
+        - name: "category"
+          in: "query"
+          required: false"
+          schema:
+            type: "string"
+        - name: "page"
+          in: "query"
+          required: false"
+          schema:
+            type: "integer"
+            default: 1"
+            minimum: 1"
+        - name: "page_size"
+          in: "query"
+          required: false"
+          schema:
+            type: "integer"
+            default: 20"
+            maximum: 100"
+      responses:
+        "200":
+          description: "Successful paginated list of StreamMetricRecord items"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StreamMetricRecordPageResponse"
+        "400":
+          $ref: "#/components/responses/BadRequestError"
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+    post:
+      summary: "Create a new StreamMetricRecord"
+      operationId: "create_analytics_service_entity"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateStreamMetricRecordRequest"
+      responses:
+        "201":
+          description: "StreamMetricRecord successfully created"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StreamMetricRecordDetailResponse"
+        "409":
+          $ref: "#/components/responses/ConflictError"
+        "422":
+          $ref: "#/components/responses/ValidationError"
+  /metrics/{id}:
+    parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+          format: "uuid"
+    get:
+      summary: "Fetch StreamMetricRecord by UUID"
+      operationId: "get_analytics_service_by_id"
+      responses:
+        "200":
+          description: "StreamMetricRecord detail record"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StreamMetricRecordDetailResponse"
+        "404":
+          $ref: "#/components/responses/NotFoundError"
+    put:
+      summary: "Update StreamMetricRecord attributes"
+      operationId: "update_analytics_service_entity"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateStreamMetricRecordRequest"
+      responses:
+        "200":
+          description: "Successfully updated StreamMetricRecord"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StreamMetricRecordDetailResponse"
+        "404":
+          $ref: "#/components/responses/NotFoundError"
+    delete:
+      summary: "Soft delete StreamMetricRecord"
+      operationId: "delete_analytics_service_entity"
+      responses:
+        "204":
+          description: "Successfully deleted"
+        "404":
+          $ref: "#/components/responses/NotFoundError"
+  /metrics/{id}/status:
+    parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+          format: "uuid"
+    patch:
+      summary: "Transition StreamMetricRecord lifecycle state"
+      operationId: "change_analytics_service_status"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ChangeStreamMetricRecordStatusRequest"
+      responses:
+        "200":
+          description: "Status successfully updated"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StreamMetricRecordDetailResponse"
+        "400":
+          $ref: "#/components/responses/BadRequestError"
+  /metrics/{id}/sub1:
+    parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+          format: "uuid"
+    post:
+      summary: "Add TimeSeriesDataPoint child entity"
+      operationId: "add_analytics_service_sub1"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AddTimeSeriesDataPointRequest"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StreamMetricRecordDetailResponse"
+  /metrics/{id}/sub2:
+    parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+          format: "uuid"
+    post:
+      summary: "Add AggregationDimension child entity"
+      operationId: "add_analytics_service_sub2"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AddAggregationDimensionRequest"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StreamMetricRecordDetailResponse"
+  /metrics/batch:
+    post:
+      summary: "Execute batch operations on StreamMetricRecord records"
+      operationId: "batch_analytics_service_action"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BatchStreamMetricRecordActionRequest"
+      responses:
+        "200":
+          description: "Batch execution results"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BatchActionResultResponse"
+components:
+  schemas:
+    CreateStreamMetricRecordRequest:
+      type: "object"
+      required: ["name", "code"]
+      properties:
+        field_attribute_1:
+          type: "string"
+          description: "Configurable business attribute descriptor 1"
+        field_attribute_2:
+          type: "string"
+          description: "Configurable business attribute descriptor 2"
+        field_attribute_3:
+          type: "string"
+          description: "Configurable business attribute descriptor 3"
+        field_attribute_4:
+          type: "string"
+          description: "Configurable business attribute descriptor 4"
+        field_attribute_5:
+          type: "string"
+          description: "Configurable business attribute descriptor 5"
+        field_attribute_6:
+          type: "string"
+          description: "Configurable business attribute descriptor 6"
+        field_attribute_7:
+          type: "string"
+          description: "Configurable business attribute descriptor 7"
+        field_attribute_8:
+          type: "string"
+          description: "Configurable business attribute descriptor 8"
+        field_attribute_9:
+          type: "string"
+          description: "Configurable business attribute descriptor 9"
+        field_attribute_10:
+          type: "string"
+          description: "Configurable business attribute descriptor 10"
+        field_attribute_11:
+          type: "string"
+          description: "Configurable business attribute descriptor 11"
+        field_attribute_12:
+          type: "string"
+          description: "Configurable business attribute descriptor 12"
+        field_attribute_13:
+          type: "string"
+          description: "Configurable business attribute descriptor 13"
+        field_attribute_14:
+          type: "string"
+          description: "Configurable business attribute descriptor 14"
+        field_attribute_15:
+          type: "string"
+          description: "Configurable business attribute descriptor 15"
+        field_attribute_16:
+          type: "string"
+          description: "Configurable business attribute descriptor 16"
+        field_attribute_17:
+          type: "string"
+          description: "Configurable business attribute descriptor 17"
+        field_attribute_18:
+          type: "string"
+          description: "Configurable business attribute descriptor 18"
+        field_attribute_19:
+          type: "string"
+          description: "Configurable business attribute descriptor 19"
+        field_attribute_20:
+          type: "string"
+          description: "Configurable business attribute descriptor 20"
+        field_attribute_21:
+          type: "string"
+          description: "Configurable business attribute descriptor 21"
+        field_attribute_22:
+          type: "string"
+          description: "Configurable business attribute descriptor 22"
+        field_attribute_23:
+          type: "string"
+          description: "Configurable business attribute descriptor 23"
+        field_attribute_24:
+          type: "string"
+          description: "Configurable business attribute descriptor 24"
+        name:
+          type: "string"
+          minLength: 2
+          maxLength: 150
+        code:
+          type: "string"
+          minLength: 2
+          maxLength: 50
+        description:
+          type: "string"
+          nullable: true
+        category:
+          type: "string"
+          default: "STANDARD"
+        attributes:
+          type: "object"
+          additionalProperties: true
+    UpdateStreamMetricRecordRequest:
+      type: "object"
+      properties:
+        field_attribute_1:
+          type: "string"
+          nullable: true
+        field_attribute_2:
+          type: "string"
+          nullable: true
+        field_attribute_3:
+          type: "string"
+          nullable: true
+        field_attribute_4:
+          type: "string"
+          nullable: true
+        field_attribute_5:
+          type: "string"
+          nullable: true
+        field_attribute_6:
+          type: "string"
+          nullable: true
+        field_attribute_7:
+          type: "string"
+          nullable: true
+        field_attribute_8:
+          type: "string"
+          nullable: true
+        field_attribute_9:
+          type: "string"
+          nullable: true
+        field_attribute_10:
+          type: "string"
+          nullable: true
+        field_attribute_11:
+          type: "string"
+          nullable: true
+        field_attribute_12:
+          type: "string"
+          nullable: true
+        field_attribute_13:
+          type: "string"
+          nullable: true
+        field_attribute_14:
+          type: "string"
+          nullable: true
+        field_attribute_15:
+          type: "string"
+          nullable: true
+        field_attribute_16:
+          type: "string"
+          nullable: true
+        field_attribute_17:
+          type: "string"
+          nullable: true
+        field_attribute_18:
+          type: "string"
+          nullable: true
+        field_attribute_19:
+          type: "string"
+          nullable: true
+        field_attribute_20:
+          type: "string"
+          nullable: true
+        field_attribute_21:
+          type: "string"
+          nullable: true
+        field_attribute_22:
+          type: "string"
+          nullable: true
+        field_attribute_23:
+          type: "string"
+          nullable: true
+        field_attribute_24:
+          type: "string"
+          nullable: true
+        name:
+          type: "string"
+          nullable: true
+        description:
+          type: "string"
+          nullable: true
+        category:
+          type: "string"
+          nullable: true
+        attributes:
+          type: "object"
+          nullable: true
+    ChangeStreamMetricRecordStatusRequest:
+      type: "object"
+      required: ["target_status"]
+      properties:
+        target_status:
+          type: "string"
+        reason:
+          type: "string"
+          nullable: true
+    AddTimeSeriesDataPointRequest:
+      type: "object"
+      required: ["name", "code"]
+      properties:
+        config_param_1:
+          type: "string"
+          description: "Sub1 Configuration Parameter 1"
+        config_param_2:
+          type: "string"
+          description: "Sub1 Configuration Parameter 2"
+        config_param_3:
+          type: "string"
+          description: "Sub1 Configuration Parameter 3"
+        config_param_4:
+          type: "string"
+          description: "Sub1 Configuration Parameter 4"
+        config_param_5:
+          type: "string"
+          description: "Sub1 Configuration Parameter 5"
+        config_param_6:
+          type: "string"
+          description: "Sub1 Configuration Parameter 6"
+        config_param_7:
+          type: "string"
+          description: "Sub1 Configuration Parameter 7"
+        config_param_8:
+          type: "string"
+          description: "Sub1 Configuration Parameter 8"
+        config_param_9:
+          type: "string"
+          description: "Sub1 Configuration Parameter 9"
+        config_param_10:
+          type: "string"
+          description: "Sub1 Configuration Parameter 10"
+        config_param_11:
+          type: "string"
+          description: "Sub1 Configuration Parameter 11"
+        config_param_12:
+          type: "string"
+          description: "Sub1 Configuration Parameter 12"
+        config_param_13:
+          type: "string"
+          description: "Sub1 Configuration Parameter 13"
+        config_param_14:
+          type: "string"
+          description: "Sub1 Configuration Parameter 14"
+        name:
+          type: "string"
+        code:
+          type: "string"
+        priority:
+          type: "integer"
+          default: 10
+        config_data:
+          type: "object"
+    AddAggregationDimensionRequest:
+      type: "object"
+      required: ["label", "value_payload"]
+      properties:
+        dimension_param_1:
+          type: "number"
+          description: "Sub2 Dimension Parameter 1"
+        dimension_param_2:
+          type: "number"
+          description: "Sub2 Dimension Parameter 2"
+        dimension_param_3:
+          type: "number"
+          description: "Sub2 Dimension Parameter 3"
+        dimension_param_4:
+          type: "number"
+          description: "Sub2 Dimension Parameter 4"
+        dimension_param_5:
+          type: "number"
+          description: "Sub2 Dimension Parameter 5"
+        dimension_param_6:
+          type: "number"
+          description: "Sub2 Dimension Parameter 6"
+        dimension_param_7:
+          type: "number"
+          description: "Sub2 Dimension Parameter 7"
+        dimension_param_8:
+          type: "number"
+          description: "Sub2 Dimension Parameter 8"
+        dimension_param_9:
+          type: "number"
+          description: "Sub2 Dimension Parameter 9"
+        dimension_param_10:
+          type: "number"
+          description: "Sub2 Dimension Parameter 10"
+        dimension_param_11:
+          type: "number"
+          description: "Sub2 Dimension Parameter 11"
+        dimension_param_12:
+          type: "number"
+          description: "Sub2 Dimension Parameter 12"
+        dimension_param_13:
+          type: "number"
+          description: "Sub2 Dimension Parameter 13"
+        dimension_param_14:
+          type: "number"
+          description: "Sub2 Dimension Parameter 14"
+        label:
+          type: "string"
+        value_payload:
+          type: "string"
+        score:
+          type: "number"
+          default: 1.0
+        tags:
+          type: "array"
+          items:
+            type: "string"
+    BatchStreamMetricRecordActionRequest:
+      type: "object"
+      required: ["entity_ids", "action"]
+      properties:
+        entity_ids:
+          type: "array"
+          items:
+            type: "string"
+            format: "uuid"
+        action:
+          type: "string"
+          enum: ["ACTIVATE", "SUSPEND", "ARCHIVE", "DELETE"]
+        reason:
+          type: "string"
+          nullable: true
+    StreamMetricRecordDetailResponse:
+      type: "object"
+      properties:
+        metric_attribute_1:
+          type: "string"
+          description: "Detail metric property 1"
+        metric_attribute_2:
+          type: "string"
+          description: "Detail metric property 2"
+        metric_attribute_3:
+          type: "string"
+          description: "Detail metric property 3"
+        metric_attribute_4:
+          type: "string"
+          description: "Detail metric property 4"
+        metric_attribute_5:
+          type: "string"
+          description: "Detail metric property 5"
+        metric_attribute_6:
+          type: "string"
+          description: "Detail metric property 6"
+        metric_attribute_7:
+          type: "string"
+          description: "Detail metric property 7"
+        metric_attribute_8:
+          type: "string"
+          description: "Detail metric property 8"
+        metric_attribute_9:
+          type: "string"
+          description: "Detail metric property 9"
+        metric_attribute_10:
+          type: "string"
+          description: "Detail metric property 10"
+        metric_attribute_11:
+          type: "string"
+          description: "Detail metric property 11"
+        metric_attribute_12:
+          type: "string"
+          description: "Detail metric property 12"
+        metric_attribute_13:
+          type: "string"
+          description: "Detail metric property 13"
+        metric_attribute_14:
+          type: "string"
+          description: "Detail metric property 14"
+        metric_attribute_15:
+          type: "string"
+          description: "Detail metric property 15"
+        metric_attribute_16:
+          type: "string"
+          description: "Detail metric property 16"
+        metric_attribute_17:
+          type: "string"
+          description: "Detail metric property 17"
+        metric_attribute_18:
+          type: "string"
+          description: "Detail metric property 18"
+        metric_attribute_19:
+          type: "string"
+          description: "Detail metric property 19"
+        metric_attribute_20:
+          type: "string"
+          description: "Detail metric property 20"
+        metric_attribute_21:
+          type: "string"
+          description: "Detail metric property 21"
+        metric_attribute_22:
+          type: "string"
+          description: "Detail metric property 22"
+        metric_attribute_23:
+          type: "string"
+          description: "Detail metric property 23"
+        metric_attribute_24:
+          type: "string"
+          description: "Detail metric property 24"
+        metric_attribute_25:
+          type: "string"
+          description: "Detail metric property 25"
+        metric_attribute_26:
+          type: "string"
+          description: "Detail metric property 26"
+        metric_attribute_27:
+          type: "string"
+          description: "Detail metric property 27"
+        metric_attribute_28:
+          type: "string"
+          description: "Detail metric property 28"
+        metric_attribute_29:
+          type: "string"
+          description: "Detail metric property 29"
+        id:
+          type: "string"
+          format: "uuid"
+        tenant_id:
+          type: "string"
+        name:
+          type: "string"
+        code:
+          type: "string"
+        status:
+          type: "string"
+        category:
+          type: "string"
+        version:
+          type: "integer"
+        description:
+          type: "string"
+          nullable: true
+        is_active:
+          type: "boolean"
+        is_deleted:
+          type: "boolean"
+        sub_items_1:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/TimeSeriesDataPointResponse"
+        sub_items_2:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/AggregationDimensionResponse"
+        attributes:
+          type: "object"
+        status_history:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/StatusHistoryResponse"
+        created_at:
+          type: "string"
+          format: "date-time"
+        updated_at:
+          type: "string"
+          format: "date-time"
+    StreamMetricRecordSummaryResponse:
+      type: "object"
+      properties:
+        summary_flag_1:
+          type: "boolean"
+          default: true
+        summary_flag_2:
+          type: "boolean"
+          default: true
+        summary_flag_3:
+          type: "boolean"
+          default: true
+        summary_flag_4:
+          type: "boolean"
+          default: true
+        summary_flag_5:
+          type: "boolean"
+          default: true
+        summary_flag_6:
+          type: "boolean"
+          default: true
+        summary_flag_7:
+          type: "boolean"
+          default: true
+        summary_flag_8:
+          type: "boolean"
+          default: true
+        summary_flag_9:
+          type: "boolean"
+          default: true
+        summary_flag_10:
+          type: "boolean"
+          default: true
+        summary_flag_11:
+          type: "boolean"
+          default: true
+        summary_flag_12:
+          type: "boolean"
+          default: true
+        summary_flag_13:
+          type: "boolean"
+          default: true
+        summary_flag_14:
+          type: "boolean"
+          default: true
+        summary_flag_15:
+          type: "boolean"
+          default: true
+        summary_flag_16:
+          type: "boolean"
+          default: true
+        summary_flag_17:
+          type: "boolean"
+          default: true
+        summary_flag_18:
+          type: "boolean"
+          default: true
+        summary_flag_19:
+          type: "boolean"
+          default: true
+        id:
+          type: "string"
+          format: "uuid"
+        name:
+          type: "string"
+        code:
+          type: "string"
+        status:
+          type: "string"
+        category:
+          type: "string"
+        is_active:
+          type: "boolean"
+        version:
+          type: "integer"
+        sub1_count:
+          type: "integer"
+        sub2_count:
+          type: "integer"
+        created_at:
+          type: "string"
+          format: "date-time"
+        updated_at:
+          type: "string"
+          format: "date-time"
+    StreamMetricRecordPageResponse:
+      type: "object"
+      properties:
+        items:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/StreamMetricRecordSummaryResponse"
+        metadata:
+          $ref: "#/components/schemas/PageMetadata"
+    TimeSeriesDataPointResponse:
+      type: "object"
+      properties:
+        id:
+          type: "string"
+          format: "uuid"
+        name:
+          type: "string"
+        code:
+          type: "string"
+        is_active:
+          type: "boolean"
+        priority:
+          type: "integer"
+        config_data:
+          type: "object"
+        created_at:
+          type: "string"
+          format: "date-time"
+    AggregationDimensionResponse:
+      type: "object"
+      properties:
+        id:
+          type: "string"
+          format: "uuid"
+        label:
+          type: "string"
+        value_payload:
+          type: "string"
+        score:
+          type: "number"
+        tags:
+          type: "array"
+          items:
+            type: "string"
+        created_at:
+          type: "string"
+          format: "date-time"
+    StatusHistoryResponse:
+      type: "object"
+      properties:
+        from_status:
+          type: "string"
+        to_status:
+          type: "string"
+        changed_at:
+          type: "string"
+          format: "date-time"
+        changed_by:
+          type: "string"
+        reason:
+          type: "string"
+          nullable: true
+    PageMetadata:
+      type: "object"
+      properties:
+        page:
+          type: "integer"
+        page_size:
+          type: "integer"
+        total_items:
+          type: "integer"
+        total_pages:
+          type: "integer"
+        has_next:
+          type: "boolean"
+        has_previous:
+          type: "boolean"
+    BatchActionResultResponse:
+      type: "object"
+      properties:
+        success_count:
+          type: "integer"
+        failure_count:
+          type: "integer"
+        successful_ids:
+          type: "array"
+          items:
+            type: "string"
+        errors:
+          type: "object"
+          additionalProperties:
+            type: "string"
+  responses:
+    BadRequestError:
+      description: "Invalid request or malformed domain rule"
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ProblemDetails"
+    UnauthorizedError:
+      description: "Missing or invalid bearer token"
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ProblemDetails"
+    NotFoundError:
+      description: "Target entity was not found"
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ProblemDetails"
+    ConflictError:
+      description: "Identifier conflict or optimistic lock clash"
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ProblemDetails"
+    ValidationError:
+      description: "Pydantic validation failure"
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ProblemDetails"
+    InternalServerError:
+      description: "Unexpected internal server failure"
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ProblemDetails"
+    ProblemDetails:
+      type: "object"
+      properties:
+        type:
+          type: "string"
+        title:
+          type: "string"
+        status:
+          type: "integer"
+        detail:
+          type: "string"
+        instance:
+          type: "string"
