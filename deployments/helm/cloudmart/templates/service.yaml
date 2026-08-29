@@ -1,0 +1,19 @@
+{{- range $serviceName, $serviceConfig := .Values.services }}
+{{- if $serviceConfig.enabled }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "cloudmart.fullname" $ }}-{{ $serviceName }}
+  labels:
+    app.kubernetes.io/name: {{ $serviceName }}
+spec:
+  type: ClusterIP
+  ports:
+    - port: {{ $serviceConfig.port }}
+      targetPort: {{ $serviceConfig.port }}
+      name: http
+  selector:
+    app.kubernetes.io/name: {{ $serviceName }}
+{{- end }}
+{{- end }}

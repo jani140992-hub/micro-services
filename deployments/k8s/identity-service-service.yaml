@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: identity-service
+  namespace: cloudmart
+  labels:
+    app.kubernetes.io/name: identity-service
+    app.kubernetes.io/part-of: cloudmart
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8001
+      targetPort: 8001
+      name: http
+      protocol: TCP
+  selector:
+    app.kubernetes.io/name: identity-service

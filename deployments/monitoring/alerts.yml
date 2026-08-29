@@ -1,0 +1,38 @@
+groups:
+  - name: cloudmart_microservices_alerts
+    rules:
+      - alert: ServiceDown
+        expr: up == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Microservice {{ $labels.job }} is DOWN"
+          description: "Instance {{ $labels.instance }} of {{ $labels.job }} is unreachable."
+
+      - alert: HighErrorRate
+        expr: rate(http_requests_total{status=~"5.."}[5m]) / rate(http_requests_total[5m]) * 100 > 5
+        for: 3m
+        labels:
+          severity: high
+        annotations:
+          summary: "High HTTP 5xx error rate on {{ $labels.job }}"
+          description: "Error rate exceeded 5% over 5m window."
+
+      - alert: HighLatencyP99
+        expr: histogram_quantile(0.99, sum(rate(http_request_duration_seconds_bucket[5m])) by (le, job)) > 1.5
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Elevated P99 response latency on {{ $labels.job }}"
+          description: "P99 response latency exceeded 1.5 seconds."
+
+      - alert: KafkaConsumerLagHigh
+        expr: kafka_consumergroup_lag > 500
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Kafka consumer lag threshold breached on {{ $labels.topic }}"
+          description: "Consumer group lag has remained above 500 messages for over 5 minutes."

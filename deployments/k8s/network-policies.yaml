@@ -1,0 +1,50 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: cloudmart-internal-traffic-policy
+  namespace: cloudmart
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/part-of: cloudmart
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              name: cloudmart
+      ports:
+        - protocol: TCP
+          port: 8000
+        - protocol: TCP
+          port: 8001
+        - protocol: TCP
+          port: 8002
+        - protocol: TCP
+          port: 8003
+        - protocol: TCP
+          port: 8004
+        - protocol: TCP
+          port: 8005
+        - protocol: TCP
+          port: 8006
+        - protocol: TCP
+          port: 8007
+        - protocol: TCP
+          port: 8008
+        - protocol: TCP
+          port: 8009
+  egress:
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              name: cloudmart
+    - to:
+        - podSelector:
+            matchLabels:
+              app.kubernetes.io/name: kube-dns
+      ports:
+        - protocol: UDP
+          port: 53

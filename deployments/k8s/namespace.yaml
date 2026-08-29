@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: cloudmart
+  labels:
+    app.kubernetes.io/name: cloudmart
+    app.kubernetes.io/part-of: cloudmart-distributed-platform
+    istio-injection: enabled

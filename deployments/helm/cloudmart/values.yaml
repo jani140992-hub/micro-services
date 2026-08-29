@@ -1,0 +1,414 @@
+# Global CloudMart Helm Values
+global:
+  environment: production
+  clusterDomain: cluster.local
+  imagePullSecrets: []
+
+ingress:
+  enabled: true
+  className: nginx
+  hostname: api.cloudmart.com
+  tls: true
+  secretName: cloudmart-api-tls
+
+services:
+  api_gateway:
+    enabled: true
+    replicas: 3
+    port: 8000
+    image:
+      repository: ghcr.io/jani140992-hub/micro-services/api_gateway
+      tag: v1.0.0
+      pullPolicy: IfNotPresent
+    resources:
+      requests:
+        cpu: 250m
+        memory: 512Mi
+      limits:
+        cpu: 1000m
+        memory: 1024Mi
+    autoscaling:
+      enabled: true
+      minReplicas: 2
+      maxReplicas: 10
+      targetCPUUtilizationPercentage: 75
+    config:
+      custom_helm_key_1: value_1
+      custom_helm_key_2: value_2
+      custom_helm_key_3: value_3
+      custom_helm_key_4: value_4
+      custom_helm_key_5: value_5
+      custom_helm_key_6: value_6
+      custom_helm_key_7: value_7
+      custom_helm_key_8: value_8
+      custom_helm_key_9: value_9
+      custom_helm_key_10: value_10
+      custom_helm_key_11: value_11
+      custom_helm_key_12: value_12
+      custom_helm_key_13: value_13
+      custom_helm_key_14: value_14
+      custom_helm_key_15: value_15
+      custom_helm_key_16: value_16
+      custom_helm_key_17: value_17
+      custom_helm_key_18: value_18
+      custom_helm_key_19: value_19
+  identity_service:
+    enabled: true
+    replicas: 3
+    port: 8001
+    image:
+      repository: ghcr.io/jani140992-hub/micro-services/identity_service
+      tag: v1.0.0
+      pullPolicy: IfNotPresent
+    resources:
+      requests:
+        cpu: 250m
+        memory: 512Mi
+      limits:
+        cpu: 1000m
+        memory: 1024Mi
+    autoscaling:
+      enabled: true
+      minReplicas: 2
+      maxReplicas: 10
+      targetCPUUtilizationPercentage: 75
+    config:
+      custom_helm_key_1: value_1
+      custom_helm_key_2: value_2
+      custom_helm_key_3: value_3
+      custom_helm_key_4: value_4
+      custom_helm_key_5: value_5
+      custom_helm_key_6: value_6
+      custom_helm_key_7: value_7
+      custom_helm_key_8: value_8
+      custom_helm_key_9: value_9
+      custom_helm_key_10: value_10
+      custom_helm_key_11: value_11
+      custom_helm_key_12: value_12
+      custom_helm_key_13: value_13
+      custom_helm_key_14: value_14
+      custom_helm_key_15: value_15
+      custom_helm_key_16: value_16
+      custom_helm_key_17: value_17
+      custom_helm_key_18: value_18
+      custom_helm_key_19: value_19
+  user_service:
+    enabled: true
+    replicas: 3
+    port: 8002
+    image:
+      repository: ghcr.io/jani140992-hub/micro-services/user_service
+      tag: v1.0.0
+      pullPolicy: IfNotPresent
+    resources:
+      requests:
+        cpu: 250m
+        memory: 512Mi
+      limits:
+        cpu: 1000m
+        memory: 1024Mi
+    autoscaling:
+      enabled: true
+      minReplicas: 2
+      maxReplicas: 10
+      targetCPUUtilizationPercentage: 75
+    config:
+      custom_helm_key_1: value_1
+      custom_helm_key_2: value_2
+      custom_helm_key_3: value_3
+      custom_helm_key_4: value_4
+      custom_helm_key_5: value_5
+      custom_helm_key_6: value_6
+      custom_helm_key_7: value_7
+      custom_helm_key_8: value_8
+      custom_helm_key_9: value_9
+      custom_helm_key_10: value_10
+      custom_helm_key_11: value_11
+      custom_helm_key_12: value_12
+      custom_helm_key_13: value_13
+      custom_helm_key_14: value_14
+      custom_helm_key_15: value_15
+      custom_helm_key_16: value_16
+      custom_helm_key_17: value_17
+      custom_helm_key_18: value_18
+      custom_helm_key_19: value_19
+  catalog_service:
+    enabled: true
+    replicas: 3
+    port: 8003
+    image:
+      repository: ghcr.io/jani140992-hub/micro-services/catalog_service
+      tag: v1.0.0
+      pullPolicy: IfNotPresent
+    resources:
+      requests:
+        cpu: 250m
+        memory: 512Mi
+      limits:
+        cpu: 1000m
+        memory: 1024Mi
+    autoscaling:
+      enabled: true
+      minReplicas: 2
+      maxReplicas: 10
+      targetCPUUtilizationPercentage: 75
+    config:
+      custom_helm_key_1: value_1
+      custom_helm_key_2: value_2
+      custom_helm_key_3: value_3
+      custom_helm_key_4: value_4
+      custom_helm_key_5: value_5
+      custom_helm_key_6: value_6
+      custom_helm_key_7: value_7
+      custom_helm_key_8: value_8
+      custom_helm_key_9: value_9
+      custom_helm_key_10: value_10
+      custom_helm_key_11: value_11
+      custom_helm_key_12: value_12
+      custom_helm_key_13: value_13
+      custom_helm_key_14: value_14
+      custom_helm_key_15: value_15
+      custom_helm_key_16: value_16
+      custom_helm_key_17: value_17
+      custom_helm_key_18: value_18
+      custom_helm_key_19: value_19
+  inventory_service:
+    enabled: true
+    replicas: 3
+    port: 8004
+    image:
+      repository: ghcr.io/jani140992-hub/micro-services/inventory_service
+      tag: v1.0.0
+      pullPolicy: IfNotPresent
+    resources:
+      requests:
+        cpu: 250m
+        memory: 512Mi
+      limits:
+        cpu: 1000m
+        memory: 1024Mi
+    autoscaling:
+      enabled: true
+      minReplicas: 2
+      maxReplicas: 10
+      targetCPUUtilizationPercentage: 75
+    config:
+      custom_helm_key_1: value_1
+      custom_helm_key_2: value_2
+      custom_helm_key_3: value_3
+      custom_helm_key_4: value_4
+      custom_helm_key_5: value_5
+      custom_helm_key_6: value_6
+      custom_helm_key_7: value_7
+      custom_helm_key_8: value_8
+      custom_helm_key_9: value_9
+      custom_helm_key_10: value_10
+      custom_helm_key_11: value_11
+      custom_helm_key_12: value_12
+      custom_helm_key_13: value_13
+      custom_helm_key_14: value_14
+      custom_helm_key_15: value_15
+      custom_helm_key_16: value_16
+      custom_helm_key_17: value_17
+      custom_helm_key_18: value_18
+      custom_helm_key_19: value_19
+  order_service:
+    enabled: true
+    replicas: 3
+    port: 8005
+    image:
+      repository: ghcr.io/jani140992-hub/micro-services/order_service
+      tag: v1.0.0
+      pullPolicy: IfNotPresent
+    resources:
+      requests:
+        cpu: 250m
+        memory: 512Mi
+      limits:
+        cpu: 1000m
+        memory: 1024Mi
+    autoscaling:
+      enabled: true
+      minReplicas: 2
+      maxReplicas: 10
+      targetCPUUtilizationPercentage: 75
+    config:
+      custom_helm_key_1: value_1
+      custom_helm_key_2: value_2
+      custom_helm_key_3: value_3
+      custom_helm_key_4: value_4
+      custom_helm_key_5: value_5
+      custom_helm_key_6: value_6
+      custom_helm_key_7: value_7
+      custom_helm_key_8: value_8
+      custom_helm_key_9: value_9
+      custom_helm_key_10: value_10
+      custom_helm_key_11: value_11
+      custom_helm_key_12: value_12
+      custom_helm_key_13: value_13
+      custom_helm_key_14: value_14
+      custom_helm_key_15: value_15
+      custom_helm_key_16: value_16
+      custom_helm_key_17: value_17
+      custom_helm_key_18: value_18
+      custom_helm_key_19: value_19
+  payment_service:
+    enabled: true
+    replicas: 3
+    port: 8006
+    image:
+      repository: ghcr.io/jani140992-hub/micro-services/payment_service
+      tag: v1.0.0
+      pullPolicy: IfNotPresent
+    resources:
+      requests:
+        cpu: 250m
+        memory: 512Mi
+      limits:
+        cpu: 1000m
+        memory: 1024Mi
+    autoscaling:
+      enabled: true
+      minReplicas: 2
+      maxReplicas: 10
+      targetCPUUtilizationPercentage: 75
+    config:
+      custom_helm_key_1: value_1
+      custom_helm_key_2: value_2
+      custom_helm_key_3: value_3
+      custom_helm_key_4: value_4
+      custom_helm_key_5: value_5
+      custom_helm_key_6: value_6
+      custom_helm_key_7: value_7
+      custom_helm_key_8: value_8
+      custom_helm_key_9: value_9
+      custom_helm_key_10: value_10
+      custom_helm_key_11: value_11
+      custom_helm_key_12: value_12
+      custom_helm_key_13: value_13
+      custom_helm_key_14: value_14
+      custom_helm_key_15: value_15
+      custom_helm_key_16: value_16
+      custom_helm_key_17: value_17
+      custom_helm_key_18: value_18
+      custom_helm_key_19: value_19
+  shipping_service:
+    enabled: true
+    replicas: 3
+    port: 8007
+    image:
+      repository: ghcr.io/jani140992-hub/micro-services/shipping_service
+      tag: v1.0.0
+      pullPolicy: IfNotPresent
+    resources:
+      requests:
+        cpu: 250m
+        memory: 512Mi
+      limits:
+        cpu: 1000m
+        memory: 1024Mi
+    autoscaling:
+      enabled: true
+      minReplicas: 2
+      maxReplicas: 10
+      targetCPUUtilizationPercentage: 75
+    config:
+      custom_helm_key_1: value_1
+      custom_helm_key_2: value_2
+      custom_helm_key_3: value_3
+      custom_helm_key_4: value_4
+      custom_helm_key_5: value_5
+      custom_helm_key_6: value_6
+      custom_helm_key_7: value_7
+      custom_helm_key_8: value_8
+      custom_helm_key_9: value_9
+      custom_helm_key_10: value_10
+      custom_helm_key_11: value_11
+      custom_helm_key_12: value_12
+      custom_helm_key_13: value_13
+      custom_helm_key_14: value_14
+      custom_helm_key_15: value_15
+      custom_helm_key_16: value_16
+      custom_helm_key_17: value_17
+      custom_helm_key_18: value_18
+      custom_helm_key_19: value_19
+  notification_service:
+    enabled: true
+    replicas: 3
+    port: 8008
+    image:
+      repository: ghcr.io/jani140992-hub/micro-services/notification_service
+      tag: v1.0.0
+      pullPolicy: IfNotPresent
+    resources:
+      requests:
+        cpu: 250m
+        memory: 512Mi
+      limits:
+        cpu: 1000m
+        memory: 1024Mi
+    autoscaling:
+      enabled: true
+      minReplicas: 2
+      maxReplicas: 10
+      targetCPUUtilizationPercentage: 75
+    config:
+      custom_helm_key_1: value_1
+      custom_helm_key_2: value_2
+      custom_helm_key_3: value_3
+      custom_helm_key_4: value_4
+      custom_helm_key_5: value_5
+      custom_helm_key_6: value_6
+      custom_helm_key_7: value_7
+      custom_helm_key_8: value_8
+      custom_helm_key_9: value_9
+      custom_helm_key_10: value_10
+      custom_helm_key_11: value_11
+      custom_helm_key_12: value_12
+      custom_helm_key_13: value_13
+      custom_helm_key_14: value_14
+      custom_helm_key_15: value_15
+      custom_helm_key_16: value_16
+      custom_helm_key_17: value_17
+      custom_helm_key_18: value_18
+      custom_helm_key_19: value_19
+  analytics_service:
+    enabled: true
+    replicas: 3
+    port: 8009
+    image:
+      repository: ghcr.io/jani140992-hub/micro-services/analytics_service
+      tag: v1.0.0
+      pullPolicy: IfNotPresent
+    resources:
+      requests:
+        cpu: 250m
+        memory: 512Mi
+      limits:
+        cpu: 1000m
+        memory: 1024Mi
+    autoscaling:
+      enabled: true
+      minReplicas: 2
+      maxReplicas: 10
+      targetCPUUtilizationPercentage: 75
+    config:
+      custom_helm_key_1: value_1
+      custom_helm_key_2: value_2
+      custom_helm_key_3: value_3
+      custom_helm_key_4: value_4
+      custom_helm_key_5: value_5
+      custom_helm_key_6: value_6
+      custom_helm_key_7: value_7
+      custom_helm_key_8: value_8
+      custom_helm_key_9: value_9
+      custom_helm_key_10: value_10
+      custom_helm_key_11: value_11
+      custom_helm_key_12: value_12
+      custom_helm_key_13: value_13
+      custom_helm_key_14: value_14
+      custom_helm_key_15: value_15
+      custom_helm_key_16: value_16
+      custom_helm_key_17: value_17
+      custom_helm_key_18: value_18
+      custom_helm_key_19: value_19

@@ -1,0 +1,43 @@
+{{- range $serviceName, $serviceConfig := .Values.services }}
+{{- if $serviceConfig.enabled }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "cloudmart.fullname" $ }}-{{ $serviceName }}
+  labels:
+    app.kubernetes.io/name: {{ $serviceName }}
+    app.kubernetes.io/part-of: cloudmart
+spec:
+  replicas: {{ $serviceConfig.replicas }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ $serviceName }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ $serviceName }}
+    spec:
+      containers:
+        - name: {{ $serviceName }}
+          image: "{{ $serviceConfig.image.repository }}:{{ $serviceConfig.image.tag }}"
+          imagePullPolicy: {{ $serviceConfig.image.pullPolicy }}
+          ports:
+            - containerPort: {{ $serviceConfig.port }}
+              name: http
+          resources:
+            {{- toYaml $serviceConfig.resources | nindent 12 }}
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: {{ $serviceConfig.port }}
+            initialDelaySeconds: 15
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: {{ $serviceConfig.port }}
+            initialDelaySeconds: 5
+            periodSeconds: 5
+{{- end }}
+{{- end }}

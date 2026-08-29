@@ -1,0 +1,178 @@
+{
+  "annotations": { "list": [] },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 1,
+  "id": 1,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "id": 1,
+      "title": "API_GATEWAY - Request Rate & Latency",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 8 },
+      "targets": [
+        {
+          "expr": "rate(http_requests_total{job=\"api_gateway\"}[1m])",
+          "legendFormat": "RPS - api_gateway"
+        },
+        {
+          "expr": "histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket{job=\"api_gateway\"}[5m])) by (le))",
+          "legendFormat": "P95 Latency - api_gateway"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "IDENTITY_SERVICE - Request Rate & Latency",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 16 },
+      "targets": [
+        {
+          "expr": "rate(http_requests_total{job=\"identity_service\"}[1m])",
+          "legendFormat": "RPS - identity_service"
+        },
+        {
+          "expr": "histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket{job=\"identity_service\"}[5m])) by (le))",
+          "legendFormat": "P95 Latency - identity_service"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "USER_SERVICE - Request Rate & Latency",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 24 },
+      "targets": [
+        {
+          "expr": "rate(http_requests_total{job=\"user_service\"}[1m])",
+          "legendFormat": "RPS - user_service"
+        },
+        {
+          "expr": "histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket{job=\"user_service\"}[5m])) by (le))",
+          "legendFormat": "P95 Latency - user_service"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "CATALOG_SERVICE - Request Rate & Latency",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 32 },
+      "targets": [
+        {
+          "expr": "rate(http_requests_total{job=\"catalog_service\"}[1m])",
+          "legendFormat": "RPS - catalog_service"
+        },
+        {
+          "expr": "histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket{job=\"catalog_service\"}[5m])) by (le))",
+          "legendFormat": "P95 Latency - catalog_service"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "INVENTORY_SERVICE - Request Rate & Latency",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 40 },
+      "targets": [
+        {
+          "expr": "rate(http_requests_total{job=\"inventory_service\"}[1m])",
+          "legendFormat": "RPS - inventory_service"
+        },
+        {
+          "expr": "histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket{job=\"inventory_service\"}[5m])) by (le))",
+          "legendFormat": "P95 Latency - inventory_service"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "ORDER_SERVICE - Request Rate & Latency",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 48 },
+      "targets": [
+        {
+          "expr": "rate(http_requests_total{job=\"order_service\"}[1m])",
+          "legendFormat": "RPS - order_service"
+        },
+        {
+          "expr": "histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket{job=\"order_service\"}[5m])) by (le))",
+          "legendFormat": "P95 Latency - order_service"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "title": "PAYMENT_SERVICE - Request Rate & Latency",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 56 },
+      "targets": [
+        {
+          "expr": "rate(http_requests_total{job=\"payment_service\"}[1m])",
+          "legendFormat": "RPS - payment_service"
+        },
+        {
+          "expr": "histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket{job=\"payment_service\"}[5m])) by (le))",
+          "legendFormat": "P95 Latency - payment_service"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "title": "SHIPPING_SERVICE - Request Rate & Latency",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 64 },
+      "targets": [
+        {
+          "expr": "rate(http_requests_total{job=\"shipping_service\"}[1m])",
+          "legendFormat": "RPS - shipping_service"
+        },
+        {
+          "expr": "histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket{job=\"shipping_service\"}[5m])) by (le))",
+          "legendFormat": "P95 Latency - shipping_service"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "title": "NOTIFICATION_SERVICE - Request Rate & Latency",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 72 },
+      "targets": [
+        {
+          "expr": "rate(http_requests_total{job=\"notification_service\"}[1m])",
+          "legendFormat": "RPS - notification_service"
+        },
+        {
+          "expr": "histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket{job=\"notification_service\"}[5m])) by (le))",
+          "legendFormat": "P95 Latency - notification_service"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "title": "ANALYTICS_SERVICE - Request Rate & Latency",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 80 },
+      "targets": [
+        {
+          "expr": "rate(http_requests_total{job=\"analytics_service\"}[1m])",
+          "legendFormat": "RPS - analytics_service"
+        },
+        {
+          "expr": "histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket{job=\"analytics_service\"}[5m])) by (le))",
+          "legendFormat": "P95 Latency - analytics_service"
+        }
+      ]
+    }
+  ],
+  "refresh": "10s",
+  "schemaVersion": 38,
+  "style": "dark",
+  "tags": ["cloudmart", "microservices", "production"],
+  "time": { "from": "now-6h", "to": "now" },
+  "title": "CloudMart Enterprise Platform Mesh - Production Dashboard",
+  "version": 1
+}
